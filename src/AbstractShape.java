@@ -8,11 +8,23 @@ public abstract class AbstractShape implements Shape {
   protected Color color;
   protected Ticker time;
   protected String name;
-  protected Shape type;
+  protected String shapeType;
 
-
-  public AbstractShape(Point2D reference) {
+  /**
+   * Constructs an Abstract shape with a given reference point, color, time, name and shapeType.
+   * @param reference Point2D object that represents a positive x,y start coordinate
+   * @param color Color object that represents the color of the shape
+   * @param time Ticker object that represents the appearance and disappearance time
+   * @param name string name of the shape
+   * @param shapeType string type of shape
+   */
+  public AbstractShape(Point2D reference, Color color, Ticker time, String name, String shapeType ) {
     this.reference = reference;
+    this.color = color;
+    this.time = time;
+    this.name = name;
+    this.shapeType = shapeType;
+
   }
 
   @Override
@@ -20,16 +32,4 @@ public abstract class AbstractShape implements Shape {
     return reference.distToOrigin();
   }
 
-  @Override
-  public int compareTo(Shape s) {
-    double areaThis = this.area();
-    double areaOther = s.area();
-    if (areaThis < areaOther) {
-      return -1;
-    } else if (areaOther < areaThis) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
 }

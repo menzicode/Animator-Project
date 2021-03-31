@@ -6,26 +6,30 @@ public class Circle extends AbstractShape {
   private double radius;
 
   /**
-   * Construct a circle object using the given center and radius
-   *
+   * Constructs a Circle with a given center, radius, color, time of appearance and disappearance,
+   * name, and shapeType. An IllegalArgumentException is thrown for radius size less than zero.
    * @param x      x coordinate of the center of this circle
    * @param y      y coordinate of the center of this circle
    * @param radius the radius of this circle
+   * @param red the int representing the red of a Color
+   * @param green the int representing the green of a Color
+   * @param blue the int representing the blue of a Color
+   * @param appears the int time at which the shape appears
+   * @param disappears the int time at which the shape disappears
+   * @param name string representation of the name to call the shape
+   * @param shapeType string representation of the type of shape
+   * @throws IllegalArgumentException for radius less than zero
    */
-  public Circle(double x, double y, double radius) {
-    super(new Point2D(x, y));
+  public Circle(double x, double y, double radius, int red, int green, int blue, int appears, int
+                disappears, String name, String shapeType) {
+    super(new Point2D(x, y), new Color(red, green, blue), new Ticker(appears,
+    disappears), name, shapeType);
+    if (radius < 0) {
+      throw new IllegalArgumentException("Radius can't be negative size!");
+    }
     this.radius = radius;
   }
 
-  /**
-   * Construct a circle object with the given radius. It is centered at (0,0)
-   *
-   * @param radius the radius of this circle
-   */
-  public Circle(double radius) {
-    super(new Point2D(0, 0));
-    this.radius = radius;
-  }
 
   @Override
   public double area() {
@@ -42,8 +46,11 @@ public class Circle extends AbstractShape {
 
   }
 
-  @Override
   public Shape transform(double radius) {
+    if (radius < 0 || this.radius == radius) {
+      throw new IllegalArgumentException("Radius must be positive and different value than original" +
+              "radius size!");
+    }
     this.radius = radius;
     return this;
   }
@@ -52,5 +59,10 @@ public class Circle extends AbstractShape {
   public String toString() {
     return String.format("Circle: center (%.3f,%.3f) radius %.3f",
             this.reference.getX(), this.reference.getY(), this.radius);
+  }
+
+  @Override
+  public int compareTo(Shape o) {
+    return 0;
   }
 }

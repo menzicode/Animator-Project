@@ -18,16 +18,6 @@ public interface IModel {
    */
   void addShape();
 
-  /**
-   * Changes the color of the shape.
-   */
-  void changeColor(Shape object);
-
-  /**
-   * Changes the size of the shape.
-   */
-  void transform(Shape object);
-
 
   /**
    * Returns a collection of copy of shapes at specific time.

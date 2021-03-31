@@ -2,8 +2,8 @@
  * Class used to store the start and end time values for Shape class.
  */
 public class Ticker {
-  int appears;
-  int disappears;
+  public int appears;
+  public int disappears;
 
   /**
    * Constructs a Ticker object that has an appear and disappear time. If either time is less than

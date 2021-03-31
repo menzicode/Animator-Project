@@ -3,8 +3,8 @@
  * coordinates as (x,y).
  */
 public class Point2D {
-  private double x;
-  private double y;
+  public double x;
+  public double y;
 
   /**
    * Construct a 2d point with the given coordinates.

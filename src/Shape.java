@@ -32,4 +32,7 @@ public interface Shape extends Comparable<Shape>{
    * @throws IllegalArgumentException when colors are less than zero or greater than 255
    */
   void changeColor(int red, int green, int blue);
+
+
+
 }

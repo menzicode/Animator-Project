@@ -2,9 +2,9 @@
  * Class used to store color value of Shape. Value of integers must be between 0 and 255.
  */
 public class Color {
-  int red;
-  int green;
-  int blue;
+  public int red;
+  public int green;
+  public int blue;
 
   /**
    * Constructor for Color Class. Three integers combined creates a color.
