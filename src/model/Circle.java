@@ -1,19 +1,21 @@
+package model;
+
 
 /**
- * This class represents a circle.  It offers all the operations mandated by the Shape interface.
+ * This class represents a circle.  It offers all the operations mandated by the model.Shape interface.
  */
 public class Circle extends AbstractShape {
-  private double radius;
+  protected double radius;
 
   /**
-   * Constructs a Circle with a given center, radius, color, time of appearance and disappearance,
+   * Constructs a model.Circle with a given center, radius, color, time of appearance and disappearance,
    * name, and shapeType. An IllegalArgumentException is thrown for radius size less than zero.
    * @param x      x coordinate of the center of this circle
    * @param y      y coordinate of the center of this circle
    * @param radius the radius of this circle
-   * @param red the int representing the red of a Color
-   * @param green the int representing the green of a Color
-   * @param blue the int representing the blue of a Color
+   * @param red the int representing the red of a model.Color
+   * @param green the int representing the green of a model.Color
+   * @param blue the int representing the blue of a model.Color
    * @param appears the int time at which the shape appears
    * @param disappears the int time at which the shape disappears
    * @param name string representation of the name to call the shape
@@ -30,6 +32,21 @@ public class Circle extends AbstractShape {
     this.radius = radius;
   }
 
+  public double getX() {
+    return this.x;
+  }
+
+  public double getY() {
+    return this.y;
+  }
+
+  public double getRadius() {
+    return this.radius;
+  }
+
+  public int getRed() {
+    return this.red;
+  }
 
   @Override
   public double area() {
@@ -57,7 +74,7 @@ public class Circle extends AbstractShape {
 
 
   public String toString() {
-    return String.format("Circle: center (%.3f,%.3f) radius %.3f",
+    return String.format("model.Circle: center (%.3f,%.3f) radius %.3f",
             this.reference.getX(), this.reference.getY(), this.radius);
   }
 

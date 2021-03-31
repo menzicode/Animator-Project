@@ -1,3 +1,5 @@
+package model;
+
 /**
  * This interface contains all operations that all types of shapes
  * should support.

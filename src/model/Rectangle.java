@@ -1,8 +1,9 @@
+package model;
 
 
 /**
  * This class represents a rectangle.  It defines all the operations mandated by
- * the Shape interface
+ * the model.Shape interface
  */
 public class Rectangle extends AbstractShape {
   private double width, height;
@@ -15,9 +16,9 @@ public class Rectangle extends AbstractShape {
    * @param y      y coordinate of the lower-left corner of this rectangle
    * @param width  width of this rectangle
    * @param height height of this rectangle
-   * @param red the int representing the red of a Color
-   * @param green the int representing the green of a Color
-   * @param blue the int representing the blue of a Color
+   * @param red the int representing the red of a model.Color
+   * @param green the int representing the green of a model.Color
+   * @param blue the int representing the blue of a model.Color
    * @param appears the int time at which the shape appears
    * @param disappears the int time at which the shape disappears
    * @param name string representation of the name to call the shape
@@ -61,7 +62,7 @@ public class Rectangle extends AbstractShape {
   }
 
   public String toString() {
-    return String.format("Rectangle: LL corner (%.3f,%.3f) width %.3f height " +
+    return String.format("model.Rectangle: LL corner (%.3f,%.3f) width %.3f height " +
                     "%.3f",
             this.reference.getX(), this.reference.getY(), this.width, this
                     .height);

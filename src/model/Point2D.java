@@ -1,10 +1,12 @@
+package model;
+
 /**
  * This class represents a 2D point. This point is denoted in Cartesian
  * coordinates as (x,y).
  */
 public class Point2D {
-  public double x;
-  public double y;
+  protected double x;
+  protected double y;
 
   /**
    * Construct a 2d point with the given coordinates.
