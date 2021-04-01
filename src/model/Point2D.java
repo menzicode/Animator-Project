@@ -1,8 +1,7 @@
 package model;
 
 /**
- * This class represents a 2D point. This point is denoted in Cartesian
- * coordinates as (x,y).
+ * This class represents a 2D point. This point is denoted in Cartesian coordinates as (x,y).
  */
 public class Point2D {
   protected double x;
@@ -10,6 +9,7 @@ public class Point2D {
 
   /**
    * Construct a 2d point with the given coordinates.
+   *
    * @param x the x-coordinate of this point
    * @param y the y-coordinate of this point
    * @throws IllegalArgumentException if coordinate values are less than zero.

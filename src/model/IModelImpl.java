@@ -44,14 +44,18 @@ public class IModelImpl implements IModel {
   @Override
   public String toString() {
     StringBuilder str = new StringBuilder("Shapes:\n");
-    for (Shape object:shapes) {
+    for (Shape object : shapes) {
       str.append("Name: ").append(object.getName());
     }
     return str.toString();
   }
+
   @Override
   public ArrayList<Shape> getShapesAtTicker(int ticker) {
     return null;
   }
 
+  public int getShapeCount() {
+    return shapes.size();
+  }
 }

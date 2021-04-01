@@ -10,7 +10,9 @@ public interface IModel {
   void addShape(Shape object);
 
   /**
-   * Removes a given shape. Throws an IllegalArgumentException if the shape is not in the animation.
+   * Removes a given shape. Throws an IllegalArgumentException if the shape is not in the
+   * animation.
+   *
    * @param object a model.Shape object in the animation
    * @throws IllegalArgumentException if the shape does not exist in the animation
    */
@@ -19,6 +21,7 @@ public interface IModel {
   /**
    * Returns specific shape from the animation. An IllegalArgumentException is thrown if the shape
    * is not in the animation.
+   *
    * @param object the model.Shape to be returned from the animation
    * @throws IllegalArgumentException if the shape does not exist in the animation
    */
@@ -31,6 +34,7 @@ public interface IModel {
 
   /**
    * Returns a collection of copy of shapes at specific time.
+   *
    * @param ticker instance of time
    */
   ArrayList<Shape> getShapesAtTicker(int ticker);

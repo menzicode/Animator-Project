@@ -24,4 +24,6 @@ public class Color {
     this.blue = blue;
   }
 
+
+
 }

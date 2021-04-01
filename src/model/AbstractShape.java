@@ -8,23 +8,51 @@ public abstract class AbstractShape implements Shape {
   protected Color color;
   protected Ticker time;
   protected String name;
-  protected String shapeType;
+  protected ShapeType shapeType;
   protected Point2D newLocation;
 
+  /*Enum class added to auto populate shapetype parameter upon construction of concrete instances
+  * of AbstractShape. */
   /**
-   * Constructs an Abstract shape with a given reference point, color, time, name and shapeType.
-   * @param reference Point2D object that represents a positive x,y start coordinate
-   * @param color Color object that represents the color of the shape
-   * @param time Ticker object that represents the appearance and disappearance time
-   * @param name string name of the shape
-   * @param shapeType string type of shape
+   * Enum class used to identify Shape type for concrete instances of AbstractShape.
    */
-  public AbstractShape(Point2D reference, Color color, Ticker time, String name, String shapeType ) {
+  protected enum ShapeType {
+    CIRCLE, RECTANGLE;
+
+    /**
+     * Method for enum class used to represent enum as a string.
+     * @return String representation of ShapeType.
+     */
+    @Override
+    public String toString() {
+      String symbol;
+      switch (this) {
+        case CIRCLE:
+          symbol = "Circle";
+          break;
+        case RECTANGLE:
+          symbol = "Rectangle";
+          break;
+        default:
+          throw new IllegalArgumentException("Shape Type is invalid");
+      }
+      return symbol;
+    }
+  }
+
+  /**
+   * Constructs an Abstract shape with a given reference point, color, time, name.
+   *
+   * @param reference Point2D object that represents a positive x,y start coordinate
+   * @param color     Color object that represents the color of the shape
+   * @param time      Ticker object that represents the appearance and disappearance time
+   * @param name      string name of the shape
+   */
+  public AbstractShape(Point2D reference, Color color, Ticker time, String name) {
     this.reference = reference;
     this.color = color;
     this.time = time;
     this.name = name;
-    this.shapeType = shapeType;
     this.newLocation = null;
   }
 
@@ -69,7 +97,7 @@ public abstract class AbstractShape implements Shape {
   }
 
   @Override
-  public String getShapeType() {
+  public ShapeType getShapeType() {
     return this.shapeType;
   }
 
@@ -93,7 +121,7 @@ public abstract class AbstractShape implements Shape {
   @Override
   public void move(Point2D newLocation, Ticker time) {
     if (newLocation.x < 0 || newLocation.y < 0 || (this.reference == newLocation)
-      || time.appears < this.time.appears || time.disappears <= time.appears) {
+            || time.appears < this.time.appears || time.disappears <= time.appears) {
       throw new IllegalArgumentException("Invalid location or time period for movement.");
     }
     this.newLocation = newLocation;

@@ -8,9 +8,10 @@ public class Ticker {
   public int disappears;
 
   /**
-   * Constructs a model.Ticker object that has an appear and disappear time. If either time is less than
-   * zero or they equal each other than an IllegalArgumentException is thrown.
-   * @param appears time as an integer of when the shape appears
+   * Constructs a model.Ticker object that has an appear and disappear time. If either time is less
+   * than zero or they equal each other than an IllegalArgumentException is thrown.
+   *
+   * @param appears    time as an integer of when the shape appears
    * @param disappears time as an integer of when shape disappears.
    * @throws IllegalArgumentException when either time is less than zero or are equal to each other
    */
