@@ -72,6 +72,9 @@ public class Circle extends AbstractShape {
             this.reference.getX(), this.reference.getY(), this.radius);
   }
 
+  public void setTransformation() {
+
+  }
   /*
   Began implementation of compare to for Shape using shape type and shape name as parameters.
   will further iron out necessary comparisons for compare.

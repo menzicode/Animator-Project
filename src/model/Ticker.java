@@ -1,33 +1,33 @@
 package model;
 
 /**
- * Class used to store the start and end time values for model.Shape class.
+ * Class used to represent time intervals.
  */
 public class Ticker {
-  public int appears;
-  public int disappears;
+  private int rangeStart;
+  private int rangeEnd;
 
   /**
-   * Constructs a model.Ticker object that has an appear and disappear time. If either time is less
+   * Constructs a model.Ticker object that represents a time interval. If either time is less
    * than zero or they equal each other than an IllegalArgumentException is thrown.
    *
-   * @param appears    time as an integer of when the shape appears
-   * @param disappears time as an integer of when shape disappears.
+   * @param rangeStart    start of time range as an int.
+   * @param rangeEnd      end of time range as an int.
    * @throws IllegalArgumentException when either time is less than zero or are equal to each other
    */
-  public Ticker(int appears, int disappears) {
-    if (appears < 0 || disappears < 0 || appears == disappears) {
+  public Ticker(int rangeStart, int rangeEnd) {
+    if (rangeStart < 0 || rangeEnd < 0 || rangeStart == rangeEnd) {
       throw new IllegalArgumentException("Parameters may not be less than zero or equal.");
     }
-    this.appears = appears;
-    this.disappears = disappears;
+    this.rangeStart = rangeStart;
+    this.rangeEnd = rangeEnd;
   }
 
-  public int getAppears() {
-    return appears;
+  public int getRangeStart() {
+    return rangeStart;
   }
 
-  public int getDisappears() {
-    return disappears;
+  public int getRangeEnd() {
+    return rangeEnd;
   }
 }
