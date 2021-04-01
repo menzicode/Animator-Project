@@ -8,44 +8,31 @@ public class Circle extends AbstractShape {
   protected double radius;
 
   /**
-   * Constructs a model.Circle with a given center, radius, color, time of appearance and disappearance,
+   * Constructs a model. Circle with a given center, radius, color, time of appearance and disappearance,
    * name, and shapeType. An IllegalArgumentException is thrown for radius size less than zero.
-   * @param x      x coordinate of the center of this circle
-   * @param y      y coordinate of the center of this circle
-   * @param radius the radius of this circle
-   * @param red the int representing the red of a model.Color
-   * @param green the int representing the green of a model.Color
-   * @param blue the int representing the blue of a model.Color
-   * @param appears the int time at which the shape appears
-   * @param disappears the int time at which the shape disappears
-   * @param name string representation of the name to call the shape
-   * @param shapeType string representation of the type of shape
+   * @param radius the radius of the circle
+   * @param reference Point2D object that represents a positive x,y start coordinate
+   * @param color Color object that represents the color of the shape
+   * @param time Ticker object that represents the appearance and disappearance time
+   * @param name string name of the shape
+   * @param shapeType string type of shape
    * @throws IllegalArgumentException for radius less than zero
    */
-  public Circle(double x, double y, double radius, int red, int green, int blue, int appears, int
-                disappears, String name, String shapeType) {
-    super(new Point2D(x, y), new Color(red, green, blue), new Ticker(appears,
-    disappears), name, shapeType);
+  public Circle(double radius, Point2D reference, Color color, Ticker time, String name,
+                String shapeType) {
+    super(reference, color, time, name, shapeType);
     if (radius < 0) {
       throw new IllegalArgumentException("Radius can't be negative size!");
     }
     this.radius = radius;
   }
 
-  public double getX() {
-    return this.x;
-  }
-
-  public double getY() {
-    return this.y;
-  }
-
+  /**
+   * Returns the radius of the circle.
+   * @return radius
+   */
   public double getRadius() {
     return this.radius;
-  }
-
-  public int getRed() {
-    return this.red;
   }
 
   @Override
@@ -63,6 +50,14 @@ public class Circle extends AbstractShape {
 
   }
 
+  /**
+   * Transforms the circle by giving it a new radius value. An IllegalArgumentException is thrown
+   * if the radius is equal to the original value or if it's less than zero.
+   * @param radius new radius value
+   * @return this circle with new radius value
+   * @throws IllegalArgumentException if the radius is equal to the original value or if it's
+   * less than zero
+   */
   public Shape transform(double radius) {
     if (radius < 0 || this.radius == radius) {
       throw new IllegalArgumentException("Radius must be positive and different value than original" +

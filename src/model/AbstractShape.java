@@ -12,9 +12,9 @@ public abstract class AbstractShape implements Shape {
 
   /**
    * Constructs an Abstract shape with a given reference point, color, time, name and shapeType.
-   * @param reference model.Point2D object that represents a positive x,y start coordinate
-   * @param color model.Color object that represents the color of the shape
-   * @param time model.Ticker object that represents the appearance and disappearance time
+   * @param reference Point2D object that represents a positive x,y start coordinate
+   * @param color Color object that represents the color of the shape
+   * @param time Ticker object that represents the appearance and disappearance time
    * @param name string name of the shape
    * @param shapeType string type of shape
    */
@@ -24,7 +24,51 @@ public abstract class AbstractShape implements Shape {
     this.time = time;
     this.name = name;
     this.shapeType = shapeType;
+  }
 
+  @Override
+  public double getX() {
+    return this.reference.x;
+  }
+
+  @Override
+  public double getY() {
+    return this.reference.y;
+  }
+
+  @Override
+  public int getRed() {
+    return this.color.red;
+  }
+
+  @Override
+  public int getGreen() {
+    return this.color.green;
+  }
+
+  @Override
+  public int getBlue() {
+    return this.color.blue;
+  }
+
+  @Override
+  public int getAppearance() {
+    return this.time.appears;
+  }
+
+  @Override
+  public int getDisappearance() {
+    return this.time.disappears;
+  }
+
+  @Override
+  public String getName() {
+    return this.name;
+  }
+
+  @Override
+  public String getShapeType() {
+    return this.shapeType;
   }
 
   @Override

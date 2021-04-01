@@ -7,6 +7,60 @@ package model;
 public interface Shape extends Comparable<Shape>{
 
   /**
+   * Get x coordinate value of the shape.
+   * @return x coordinate value as double
+   */
+  double getX();
+
+  /**
+   * Get y coordinate value of the shape.
+   * @return y coordinate value as double
+   */
+  double getY();
+
+  /**
+   * Get red color value of the shape.
+   * @return red color value as int
+   */
+  int getRed();
+
+  /**
+   * Get green color value of the shape.
+   * @return green color value as int
+   */
+  int getGreen();
+
+  /**
+   * Get blue color value of the shape.
+   * @return blue color value as int
+   */
+  int getBlue();
+
+  /**
+   * Get appearance time of the shape.
+   * @return appearance time value as int
+   */
+  int getAppearance();
+
+  /**
+   * Get disappearance time of the shape.
+   * @return disappearance time value as int
+   */
+  int getDisappearance();
+
+  /**
+   * Get string name of the shape.
+   * @return name of the shape as string
+   */
+  String getName();
+
+  /**
+   * Get shapeType of the shape.
+   * @return shapeType of the shape as string
+   */
+  String getShapeType();
+
+  /**
    * Returns the distance of this shape from the origin. The distance is
    * measured from whatever reference position a shape is (e.g. a center for
    * a circle)

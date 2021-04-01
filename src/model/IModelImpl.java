@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-
-
 /**
  * This class represents the model for an animation with shapes. The class implements all methods
  * from the model.IModel interface.
@@ -47,8 +45,9 @@ public class IModelImpl implements IModel {
   public String toString() {
     StringBuilder str = new StringBuilder("Shapes:\n");
     for (Shape object:shapes) {
-      str.append("Name: ").append(object.name)
+      str.append("Name: ").append(object.getName());
     }
+    return str.toString();
   }
   @Override
   public ArrayList<Shape> getShapesAtTicker(int ticker) {
