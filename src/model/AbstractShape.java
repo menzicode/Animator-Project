@@ -76,4 +76,16 @@ public abstract class AbstractShape implements Shape {
     return reference.distToOrigin();
   }
 
+  @Override
+  public void changeColor(int red, int green, int blue) {
+    if (red < 0 || green < 0 || blue < 0 || (this.color.red == red && this.color.green == green
+            && this.color.blue == blue)) {
+      throw new IllegalArgumentException("Color values can't be less than zero or all the same as" +
+              "original values.");
+    }
+    this.color.red = red;
+    this.color.green = green;
+    this.color.blue = blue;
+  }
+
 }

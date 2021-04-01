@@ -45,26 +45,19 @@ public class Circle extends AbstractShape {
     return 2 * Math.PI * radius;
   }
 
-  @Override
-  public void changeColor(int red, int green, int blue) {
-
-  }
-
   /**
    * Transforms the circle by giving it a new radius value. An IllegalArgumentException is thrown
    * if the radius is equal to the original value or if it's less than zero.
    * @param radius new radius value
-   * @return this circle with new radius value
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's
    * less than zero
    */
-  public Shape transform(double radius) {
+  public void transform(double radius) {
     if (radius < 0 || this.radius == radius) {
       throw new IllegalArgumentException("Radius must be positive and different value than original" +
               "radius size!");
     }
     this.radius = radius;
-    return this;
   }
 
 

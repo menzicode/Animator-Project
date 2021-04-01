@@ -56,29 +56,22 @@ public class Rectangle extends AbstractShape {
     return 2 * (this.width + this.height);
   }
 
-  @Override
-  public void changeColor(int red, int green, int blue) {
-
-  }
-
   /**
    * Transforms the rectangle by giving it new width and/or height values. An IllegalArgumentException
    * is thrown if the width or height is less than zero or if both values are the same as the
    * original rectangle.
    * @param width new width of rectangle
    * @param height new height of rectangle
-   * @return this shape with new width and height
    * @throws IllegalArgumentException if width and height equal original values or either is less
    * than zero
    */
-  public Shape transform(double width, double height) {
+  public void transform(double width, double height) {
     if (width < 0 || height < 0 || (this.width == width && this.height == height)) {
       throw new IllegalArgumentException("Width and height must be positive and not the same as" +
               "original values!");
     }
     this.width = width;
     this.height = height;
-    return this;
   }
 
   public String toString() {
