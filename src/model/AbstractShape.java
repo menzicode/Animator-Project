@@ -9,6 +9,7 @@ public abstract class AbstractShape implements Shape {
   protected Ticker time;
   protected String name;
   protected String shapeType;
+  protected Point2D newLocation;
 
   /**
    * Constructs an Abstract shape with a given reference point, color, time, name and shapeType.
@@ -24,6 +25,7 @@ public abstract class AbstractShape implements Shape {
     this.time = time;
     this.name = name;
     this.shapeType = shapeType;
+    this.newLocation = null;
   }
 
   @Override
@@ -86,6 +88,16 @@ public abstract class AbstractShape implements Shape {
     this.color.red = red;
     this.color.green = green;
     this.color.blue = blue;
+  }
+
+  @Override
+  public void move(Point2D newLocation, Ticker time) {
+    if (newLocation.x < 0 || newLocation.y < 0 || (this.reference == newLocation)
+      || time.appears < this.time.appears || time.disappears <= time.appears) {
+      throw new IllegalArgumentException("Invalid location or time period for movement.");
+    }
+    this.newLocation = newLocation;
+
   }
 
 }

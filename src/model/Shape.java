@@ -89,6 +89,16 @@ public interface Shape extends Comparable<Shape>{
    */
   void changeColor(int red, int green, int blue);
 
-
+  /**
+   * Changes the shapes newLocation to the given value over a period of ticks.
+   * This allows the shape to move from one location to another.
+   * An IllegalArgumentException is thrown if the location is the same, a negative value, or the
+   * period of ticks is not at the current time or in the future.
+   * @param newLocation the x and y coordinates of the location the shape will move to
+   * @param time the ticks the movement will take place over
+   * @throws IllegalArgumentException if the location is the same, a negative value, or the
+   * period of ticks is not at the current time or in the future.
+   */
+  void move(Point2D newLocation, Ticker time);
 
 }
