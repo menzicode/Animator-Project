@@ -91,9 +91,11 @@ public interface Shape extends Comparable<Shape> {
    * @param red   the int value of the red color
    * @param green the int value of the green color
    * @param blue  the int value of the blue color
+   * @param timeStart the int start time value of when the color changes.
+   * @param timeEnd the int end time value of when the color ends the color change.
    * @throws IllegalArgumentException when colors are less than zero or greater than 255
    */
-  void changeColor(int red, int green, int blue);
+  void changeColor(int red, int green, int blue, int timeStart, int timeEnd);
 
   /**
    * Changes the shapes newLocation to the given value over a period of ticks. This allows the shape

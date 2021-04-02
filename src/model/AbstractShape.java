@@ -43,7 +43,6 @@ public abstract class AbstractShape implements Shape {
       return symbol;
     }
   }
-
   /**
    * Constructs an Abstract shape with a given reference point, color, time, name.
    *
@@ -76,8 +75,18 @@ public abstract class AbstractShape implements Shape {
   }
 
   @Override
-  public Color getColor() {
-    return this.color;
+  public int getRed() {
+    return this.color.red;
+  }
+
+  @Override
+  public int getGreen() {
+    return this.color.green;
+  }
+
+  @Override
+  public int getBlue() {
+    return this.color.blue;
   }
 
   @Override
@@ -105,33 +114,6 @@ public abstract class AbstractShape implements Shape {
     return reference.distToOrigin();
   }
 
-  /**
-   * Used to store the parameters for a shape's transformation.
-   *
-   * @param finalXCoordinate     final x coordinate of shape as a double.
-   * @param finalYCoordinate     final y coordinate of shape as a double.
-   * @param sizeChangeStartTime  time interval where size transformation begins.
-   * @param sizeChangeEndTime    time interval where size transformation ends.
-   * @param newColorRed          integer value of new color's red parameter.
-   * @param newColorGreen        integer value of new color's green parameter.
-   * @param newColorBlue         integer value of new color's blue parameter.
-   * @param colorChangeStartTime time interval where color transformation begins.
-   * @param colorChangeEndTime   time interval where color transformation ends.
-   */
-  /* Invalid arguments are handled during the construction of each type*/
-  public void setTransformation(double finalXCoordinate, double finalYCoordinate,
-                                int sizeChangeStartTime, int sizeChangeEndTime,
-                                int newColorRed, int newColorGreen, int newColorBlue,
-                                int colorChangeStartTime, int colorChangeEndTime) {
-
-    this.transformation = new Transformation(this.reference,
-            new Point2D(finalXCoordinate, finalYCoordinate),
-            new Ticker(sizeChangeStartTime, sizeChangeEndTime), this.color,
-            new Color(newColorRed, newColorGreen, newColorBlue),
-            new Ticker(colorChangeStartTime, colorChangeEndTime));
-
-  }
-
   @Override
   public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
     if (this.color.red == red && this.color.green == green
@@ -150,7 +132,7 @@ public abstract class AbstractShape implements Shape {
             || time.getRangeStart() < this.time.getRangeStart() || time.getRangeEnd() <= time.getRangeStart()) {
       throw new IllegalArgumentException("Invalid location or time period for movement.");
     }
-    this.newLocation = newLocation;
+
 
   }
 

@@ -71,21 +71,17 @@ public class Rectangle extends AbstractShape {
    *
    * @param newWidth          new width of rectangle
    * @param newHeight         new height of rectangle
-   * @param startLocation     beginning transition coordinate.
-   * @param endLocation       end of transition coordinate.
-   * @param sizeChangePeriod  denotes time size transformation happens.
-   * @param startColor        the starting color of shape.
-   * @param endColor          ending color of shape.
-   * @param colorChangePeriod denotes time color transformation happens.
+   * @param finalXCoordinate     end x coordinate.
+   * @param finalYCoordinate       end y coordinate.
+   * @param sizeChangeStartTime  the time when the size transformation begins.
+   * @param sizeChangeEndTime    the time when the size transformation ends.
    * @throws IllegalArgumentException if width and height equal original values or either is less
-   *                                  than zero
+   *                                  than zero.
    */
-
   public void transformSize(double newWidth, double newHeight,
                         double finalXCoordinate, double finalYCoordinate,
                         int sizeChangeStartTime, int sizeChangeEndTime
                         ) {
-
     Transformation transformation = new Transformation(newHeight, newWidth, this.reference,
             new Point2D(finalXCoordinate, finalYCoordinate),
             new Ticker(sizeChangeStartTime, sizeChangeEndTime), null, null,

@@ -38,7 +38,6 @@ public class Circle extends AbstractShape {
 
   /**
    * Returns the radius of the circle.
-   *
    * @return radius
    */
   public double getRadius() {

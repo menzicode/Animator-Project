@@ -18,7 +18,7 @@ public class Transformation {
   protected Ticker sizeChangePeriod;
 
   /**
-   * Constructor for Transformation class.
+   * Constructs a transformed circle. The size of the radius is transformed from its original state.
    *
    * @param startLocation     beginning transition coordinate.
    * @param endLocation       end of transition coordinate.
@@ -39,17 +39,24 @@ public class Transformation {
 
   /**
    * Constructs a transformed rectangle. Rectangle has new values for fields.
-   * @param
+   * @param newHeight         the new height for the rectangle.
+   * @param newWidth          the new width for the rectangle.
+   * @param startLocation     beginning transition coordinate.
+   * @param endLocation       end of transition coordinate.
+   * @param sizeChangePeriod  denotes time size transformation happens.
+   * @param startColor        the starting color of shape.
+   * @param endColor          ending color of shape.
+   * @param colorChangePeriod denotes time color transformation happens.
    */
-  public Transformation(double height, double width, Point2D startLocation, Point2D endLocation,
+  public Transformation(double newHeight, double newWidth, Point2D startLocation, Point2D endLocation,
                             Ticker sizeChangePeriod, Color startColor, Color endColor,
                             Ticker colorChangePeriod) {
-    if (width < 0 || height < 0 ) {
+    if (newWidth < 0 || newHeight < 0 ) {
       throw new IllegalArgumentException("Width and height must be positive and not the same as" +
               "original values!");
     }
-    this.newHeight = height;
-    this.newWidth = width;
+    this.newHeight = newHeight;
+    this.newWidth = newWidth;
     this.startLocation = startLocation;
     this.endLocation = endLocation;
     this.startColor = startColor;
@@ -87,65 +94,82 @@ public class Transformation {
   }
 
   /**
-   * Sets the end location point for the shape's transformation.
-   *
-   * @param xCoordinate x coordinate of shape at end of transformation.
-   * @param yCoordinate y coordinate of shape at end of transformation.
+   * Gets the start x coordinate point where the shape's transformation begins.
+   * @return x coordinate x coordinate of shape at start of transformation.
    */
-  public void setEndLocation(double xCoordinate, double yCoordinate) {
-    this.endLocation = new Point2D(xCoordinate, yCoordinate);
+  public double getStartXCoordinate() {
+    return this.startLocation.x;
   }
 
   /**
-   * Sets the start location point for the shape's transformation.
-   *
-   * @param xCoordinate x coordinate of shape at beginning of transformation.
-   * @param yCoordinate y coordinate of shape at beginning of transformation.
+   * Gets the start y coordinate point where the shape's transformation begins.
+   * @return y coordinate y coordinate of shape at end of transformation.
    */
-  public void setStartLocation(double xCoordinate, double yCoordinate) {
-    this.startLocation = new Point2D(xCoordinate, yCoordinate);
+  public double getStartYCoordinate() {
+    return this.startLocation.y;
   }
 
   /**
-   * Sets the start color for transformation.
-   *
-   * @param red   red value of start color.
-   * @param green green value of start color.
-   * @param blue  blue value of start color.
+   * Gets the end x coordinate point for the shape's transformation.
+   * @return x coordinate x coordinate of shape at end of transformation.
    */
-  public void setStartColor(int red, int green, int blue) {
-    this.startColor = new Color(red, green, blue);
+  public double getEndXCoordinate() {
+    return this.endLocation.x;
   }
 
   /**
-   * Sets the end color for transformation.
-   *
-   * @param red   red value of end color.
-   * @param green green value of end color.
-   * @param blue  blue value of end color.
+   * Gets the end y coordinate point for the shape's transformation.
+   * @return y coordinate y coordinate of shape at end of transformation.
    */
-  public void setEndColor(int red, int green, int blue) {
-    this.endColor = new Color(red, green, blue);
+  public double getEndYCoordinate() {
+    return this.endLocation.y;
   }
 
   /**
-   * Sets time interval for when shape goes through size transformation.
-   *
-   * @param start beginning of size transformation.
-   * @param end   end of size transformation.
+   * Gets the start time of the transformation change.
+   * @return start time of the transformation
    */
-  public void setSizeChangePeriod(int start, int end) {
-    this.sizeChangePeriod = new Ticker(start, end);
+  public int getStartTime() {
+    return this.sizeChangePeriod.getRangeStart();
   }
 
   /**
-   * Sets time interval for when shape goes through size transformation.
-   *
-   * @param start beginning time of color transformation.
-   * @param end   end time of color transformation.
+   * Gets the end time of the transformation change.
+   * @return end time of the transformation change
    */
-  public void setColorChangePeriod(int start, int end) {
-    this.sizeChangePeriod = new Ticker(start, end);
+  public int getEndTime() {
+    return this.sizeChangePeriod.getRangeEnd();
+  }
+
+  /**
+   * Gets the start color of the shape.
+   * @return color of the shape to start, all three rbg values
+   */
+  public Color getStartColor() {
+    return this.startColor;
+  }
+
+  /**
+   * Gets the end color of the shape.
+   * @return color the shape ends with, all three rbg values.
+   */
+  public Color getEndColor() {
+    return this.endColor;
+  }
+  /**
+   * Gets the start time of the color change.
+   * @return start time of the color transformation.
+   */
+  public int getColorStartTime() {
+    return this.colorChangePeriod.getRangeStart();
+  }
+
+  /**
+   * Gets the end time of the color change.
+   * @return end time of the color transformation.
+   */
+  public int getColorEndTime() {
+    return this.colorChangePeriod.getRangeEnd();
   }
 
   /**
