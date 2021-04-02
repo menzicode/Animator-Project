@@ -38,6 +38,55 @@ public class Transformation {
   }
 
   /**
+   * Constructs a transformed rectangle. Rectangle has new values for fields.
+   * @param
+   */
+  public Transformation(double height, double width, Point2D startLocation, Point2D endLocation,
+                            Ticker sizeChangePeriod, Color startColor, Color endColor,
+                            Ticker colorChangePeriod) {
+    if (width < 0 || height < 0 ) {
+      throw new IllegalArgumentException("Width and height must be positive and not the same as" +
+              "original values!");
+    }
+    this.newHeight = height;
+    this.newWidth = width;
+    this.startLocation = startLocation;
+    this.endLocation = endLocation;
+    this.startColor = startColor;
+    this.endColor = endColor;
+    this.sizeChangePeriod = sizeChangePeriod;
+    this.colorChangePeriod = colorChangePeriod;
+  }
+
+  /**
+   * Transform Constructor for Oval Transformation.
+   * @param startLocation
+   * @param endLocation
+   * @param sizeChangePeriod
+   * @param startColor
+   * @param endColor
+   * @param colorChangePeriod
+   * @param radiusX
+   * @param radiusY
+   */
+  public Transformation(Point2D startLocation, Point2D endLocation,
+                        Ticker sizeChangePeriod, Color startColor, Color endColor,
+                        Ticker colorChangePeriod, double radiusX, double radiusY) {
+    if (radiusX < 0 || radiusY < 0 ) {
+      throw new IllegalArgumentException("Width and height must be positive and not the same as" +
+              "original values!");
+    }
+    this.radiusX = radiusX;
+    this.radiusY = radiusY;
+    this.startLocation = startLocation;
+    this.endLocation = endLocation;
+    this.startColor = startColor;
+    this.endColor = endColor;
+    this.sizeChangePeriod = sizeChangePeriod;
+    this.colorChangePeriod = colorChangePeriod;
+  }
+
+  /**
    * Sets the end location point for the shape's transformation.
    *
    * @param xCoordinate x coordinate of shape at end of transformation.

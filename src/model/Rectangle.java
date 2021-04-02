@@ -69,8 +69,14 @@ public class Rectangle extends AbstractShape {
    * IllegalArgumentException is thrown if the width or height is less than zero or if both values
    * are the same as the original rectangle.
    *
-   * @param width  new width of rectangle
-   * @param height new height of rectangle
+   * @param newWidth          new width of rectangle
+   * @param newHeight         new height of rectangle
+   * @param startLocation     beginning transition coordinate.
+   * @param endLocation       end of transition coordinate.
+   * @param sizeChangePeriod  denotes time size transformation happens.
+   * @param startColor        the starting color of shape.
+   * @param endColor          ending color of shape.
+   * @param colorChangePeriod denotes time color transformation happens.
    * @throws IllegalArgumentException if width and height equal original values or either is less
    *                                  than zero
    */
