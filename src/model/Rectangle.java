@@ -12,17 +12,22 @@ public class Rectangle extends AbstractShape {
    * Constructs a rectangle object with the given location of it's upper-left corner and dimensions.
    * An IllegalArgumentException is thrown for width or height values less than zero.
    *
-   * @param width     width of this rectangle
-   * @param height    height of this rectangle
-   * @param reference Point2D object that represents a positive x,y start coordinate
-   * @param color     Color object that represents the color of the shape
-   * @param time      Ticker object that represents the appearance and disappearance time
-   * @param name      string name of the shape
+   * @param width            width of this rectangle
+   * @param height           height of this rectangle
+   * @param startXCoordinate The x coordinate the object will originally be located.
+   * @param startYCoordinate The y coordinate the object will originally be located.
+   * @param red              Red value for color of shape.
+   * @param green            Green value for color of shape.
+   * @param blue             Blue value for color of shape.
+   * @param timeAppears      The time the object is set to appear on the display.
+   * @param timeDisappears   The time the object is set to disappear on the display.
+   * @param name             string name of the shape
    * @throws IllegalArgumentException for width or height less than zero
    */
-  public Rectangle(double width, double height, Point2D reference, Color color, Ticker time,
+  public Rectangle(double width, double height, double startXCoordinate, double startYCoordinate,
+                   int red, int green, int blue, int timeAppears, int timeDisappears,
                    String name) {
-    super(reference, color, time, name);
+    super(startXCoordinate, startYCoordinate, red, green, blue, timeAppears, timeDisappears, name);
     if (width < 0 || height < 0) {
       throw new IllegalArgumentException("Width and height must be positive!");
     }

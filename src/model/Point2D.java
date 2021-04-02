@@ -33,20 +33,31 @@ public class Point2D {
   }
 
   /**
-   * Return the x-coordinate of this point
+   * Return the x-coordinate of this point.
    *
-   * @return x-coordinate of this point
+   * @return x-coordinate of this point.
    */
   public double getX() {
     return x;
   }
 
   /**
-   * Return the y-coordinate of this point
+   * Return the y-coordinate of this point.
    *
-   * @return y-coordinate of this point
+   * @return y-coordinate of this point.
    */
   public double getY() {
     return y;
+  }
+
+  /**
+   * Sets the x and y parameter of this point.
+   *
+   * @param x x-coordinate of this point.
+   * @param y y-coordinate of this point.
+   */
+  public void setXandY(double x, double y) {
+    this.x = x;
+    this.y = y;
   }
 }

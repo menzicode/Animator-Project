@@ -11,14 +11,11 @@ public abstract class AbstractShape implements Shape {
   protected ShapeType shapeType;
   protected Transformation transformation;
 
-  /*Enum class added to auto populate shapetype parameter upon construction of concrete instances
-   * of AbstractShape. */
-
   /**
    * Enum class used to identify Shape type for concrete instances of AbstractShape.
    */
   protected enum ShapeType {
-    CIRCLE, RECTANGLE;
+    CIRCLE, RECTANGLE, OVAL;
 
     /**
      * Method for enum class used to represent enum as a string.
@@ -93,7 +90,7 @@ public abstract class AbstractShape implements Shape {
     return this.name;
   }
 
-  @Override
+
   public ShapeType getShapeType() {
     return this.shapeType;
   }
@@ -124,9 +121,9 @@ public abstract class AbstractShape implements Shape {
 
     this.transformation = new Transformation(this.reference,
             new Point2D(finalXCoordinate, finalYCoordinate),
-            new Ticker(sizeChangeStartTime, sizeChangeEndTime), this.getColor(),
-            new Color(newColorRed,
-                    newColorGreen, newColorBlue), new Ticker(colorChangeStartTime, colorChangeEndTime));
+            new Ticker(sizeChangeStartTime, sizeChangeEndTime), this.color,
+            new Color(newColorRed, newColorGreen, newColorBlue),
+            new Ticker(colorChangeStartTime, colorChangeEndTime));
 
   }
 

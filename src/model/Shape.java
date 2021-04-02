@@ -61,12 +61,6 @@ public interface Shape extends Comparable<Shape> {
    */
   String getName();
 
-  /**
-   * Get shapeType of the shape.
-   *
-   * @return shapeType of the shape as string
-   */
-  AbstractShape.ShapeType getShapeType();
 
   /**
    * Returns the distance of this shape from the origin. The distance is measured from whatever
@@ -114,4 +108,6 @@ public interface Shape extends Comparable<Shape> {
    */
   void move(Point2D newLocation, Ticker time);
 
+
+  AbstractShape.ShapeType getShapeType();
 }

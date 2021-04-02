@@ -13,20 +13,25 @@ public class Circle extends AbstractShape {
    * disappearance, name, and shapeType. An IllegalArgumentException is thrown for radius size less
    * than zero.
    *
-   * @param radius    the radius of the circle
-   * @param reference Point2D object that represents a positive x,y start coordinate
-   * @param color     Color object that represents the color of the shape
-   * @param time      Ticker object that represents the appearance and disappearance time
-   * @param name      string name of the shape
+   * @param radius           the radius of the circle
+   * @param startXCoordinate The x coordinate the object will originally be located.
+   * @param startYCoordinate The y coordinate the object will originally be located.
+   * @param red              Red value for color of shape.
+   * @param green            Green value for color of shape.
+   * @param blue             Blue value for color of shape.
+   * @param timeAppears      The time the object is set to appear on the display.
+   * @param timeDisappears   The time the object is set to disappear on the display.
+   * @param name             string name of the shape
    * @throws IllegalArgumentException for radius less than zero
    */
-  public Circle(double radius, Point2D reference, Color color, Ticker time, String name
-  ) {
-    super(reference, color, time, name);
+  public Circle(double radius, double startXCoordinate, double startYCoordinate, int red,
+                int green, int blue,
+                int timeAppears, int timeDisappears,
+                String name) {
+    super(startXCoordinate, startYCoordinate, red, green, blue, timeAppears, timeDisappears, name);
     if (radius < 0) {
       throw new IllegalArgumentException("Radius can't be negative size!");
     }
-
     this.radius = radius;
     super.shapeType = ShapeType.CIRCLE;
   }
@@ -75,6 +80,7 @@ public class Circle extends AbstractShape {
   public void setTransformation() {
 
   }
+
   /*
   Began implementation of compare to for Shape using shape type and shape name as parameters.
   will further iron out necessary comparisons for compare.

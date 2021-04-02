@@ -24,6 +24,15 @@ public class Color {
     this.blue = blue;
   }
 
+  /**
+   * Returns string version of color.
+   * @return string version of color.
+   */
+  @Override
+  public String toString(){
+    return String.format("(%.1d,%.1d,%.1d)", this.red, this.green, this.blue);
+  }
+
 
 
 }
