@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Abstract Class for model.Shape Class.
  */
@@ -9,7 +11,7 @@ public abstract class AbstractShape implements Shape {
   protected Ticker time;
   protected String name;
   protected ShapeType shapeType;
-  protected Transformation transformation;
+  protected ArrayList<Transformation> transformationList;
 
   /**
    * Enum class used to identify Shape type for concrete instances of AbstractShape.
@@ -31,6 +33,9 @@ public abstract class AbstractShape implements Shape {
           break;
         case RECTANGLE:
           symbol = "Rectangle";
+          break;
+        case OVAL:
+          symbol = "Oval";
           break;
         default:
           throw new IllegalArgumentException("Shape Type is invalid");
@@ -128,9 +133,9 @@ public abstract class AbstractShape implements Shape {
   }
 
   @Override
-  public void changeColor(int red, int green, int blue) {
-    if (red < 0 || green < 0 || blue < 0 || (this.color.red == red && this.color.green == green
-            && this.color.blue == blue)) {
+  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
+    if (this.color.red == red && this.color.green == green
+            && this.color.blue == blue) {
       throw new IllegalArgumentException("Color values can't be less than zero or all the same as" +
               "original values.");
     }

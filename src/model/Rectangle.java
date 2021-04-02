@@ -74,13 +74,18 @@ public class Rectangle extends AbstractShape {
    * @throws IllegalArgumentException if width and height equal original values or either is less
    *                                  than zero
    */
-  public void transform(double width, double height) {
-    if (width < 0 || height < 0 || (this.width == width && this.height == height)) {
-      throw new IllegalArgumentException("Width and height must be positive and not the same as" +
-              "original values!");
-    }
-    this.width = width;
-    this.height = height;
+
+  public void transformSize(double newWidth, double newHeight,
+                        double finalXCoordinate, double finalYCoordinate,
+                        int sizeChangeStartTime, int sizeChangeEndTime
+                        ) {
+
+    Transformation transformation = new Transformation(newHeight, newWidth, this.reference,
+            new Point2D(finalXCoordinate, finalYCoordinate),
+            new Ticker(sizeChangeStartTime, sizeChangeEndTime), null, null,
+            null);
+
+    this.transformationList.add(transformation);
   }
 
   public String toString() {

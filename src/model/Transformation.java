@@ -4,6 +4,12 @@ package model;
  * Class used to represent transformation of a specific shape.
  */
 public class Transformation {
+
+  protected double newWidth;
+  protected double newHeight;
+  protected double radiusX;
+  protected double radiusY;
+  protected double radius;
   protected Point2D startLocation;
   protected Point2D endLocation;
   protected Color startColor;
