@@ -16,9 +16,11 @@ public class Transformation {
   protected Color endColor;
   protected Ticker colorChangePeriod;
   protected Ticker sizeChangePeriod;
+  protected Ticker locationChangePeriod;
 
   /**
-   * Constructs a transformed circle. The size of the radius is transformed from its original state.
+   * Constructs a transformed circle. The size of the radius is transformed from its original
+   * state.
    *
    * @param startLocation     beginning transition coordinate.
    * @param endLocation       end of transition coordinate.
@@ -38,7 +40,8 @@ public class Transformation {
   }
 
   /**
-   * Constructs a transformed rectangle. Rectangle has new values for fields.
+   * Constructs a transformation for rectangle. Rectangle has new values for fields.
+   *
    * @param newHeight         the new height for the rectangle.
    * @param newWidth          the new width for the rectangle.
    * @param startLocation     beginning transition coordinate.
@@ -49,9 +52,9 @@ public class Transformation {
    * @param colorChangePeriod denotes time color transformation happens.
    */
   public Transformation(double newHeight, double newWidth, Point2D startLocation, Point2D endLocation,
-                            Ticker sizeChangePeriod, Color startColor, Color endColor,
-                            Ticker colorChangePeriod) {
-    if (newWidth < 0 || newHeight < 0 ) {
+                        Ticker sizeChangePeriod, Color startColor, Color endColor,
+                        Ticker colorChangePeriod) {
+    if (newWidth < 0 || newHeight < 0) {
       throw new IllegalArgumentException("Width and height must be positive and not the same as" +
               "original values!");
     }
@@ -67,6 +70,7 @@ public class Transformation {
 
   /**
    * Transform Constructor for Oval Transformation.
+   *
    * @param startLocation
    * @param endLocation
    * @param sizeChangePeriod
@@ -79,7 +83,7 @@ public class Transformation {
   public Transformation(Point2D startLocation, Point2D endLocation,
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
                         Ticker colorChangePeriod, double radiusX, double radiusY) {
-    if (radiusX < 0 || radiusY < 0 ) {
+    if (radiusX < 0 || radiusY < 0) {
       throw new IllegalArgumentException("Width and height must be positive and not the same as" +
               "original values!");
     }
@@ -94,7 +98,54 @@ public class Transformation {
   }
 
   /**
+   * Transform Constructor for Circle Transformation.
+   *
+   * @param startLocation
+   * @param endLocation
+   * @param sizeChangePeriod
+   * @param startColor
+   * @param endColor
+   * @param colorChangePeriod
+   * @param radius
+   */
+  public Transformation(Point2D startLocation, Point2D endLocation,
+                        Ticker sizeChangePeriod, Color startColor, Color endColor,
+                        Ticker colorChangePeriod, double radius) {
+    if (radius < 0) {
+      throw new IllegalArgumentException("Radius must be positive and not the same as" +
+              "original value!");
+    }
+    this.radius = radius;
+    this.startLocation = startLocation;
+    this.endLocation = endLocation;
+    this.startColor = startColor;
+    this.endColor = endColor;
+    this.sizeChangePeriod = sizeChangePeriod;
+    this.colorChangePeriod = colorChangePeriod;
+  }
+
+  /**
+   * Constructor for a color transformation.
+   * @param red red value of the new color.
+   * @param green green value of the new color.
+   * @param blue blue value of the new color.
+   * @param timeStart beginning time interval of transformation.
+   * @param timeEnd end time interval of transformation.
+   */
+  public Transformation(int red, int green, int blue, int timeStart, int timeEnd){
+    this.endColor = new Color(red, green, blue);
+    this.colorChangePeriod = new Ticker(timeStart, timeEnd);
+  };
+
+  public Transformation(double newX, double newY, int timeStart, int timeEnd){
+    this.endLocation = new Point2D(newX, newY);
+    this.locationChangePeriod = new Ticker(timeStart, timeEnd);
+
+  }
+
+  /**
    * Gets the start x coordinate point where the shape's transformation begins.
+   *
    * @return x coordinate x coordinate of shape at start of transformation.
    */
   public double getStartXCoordinate() {
@@ -103,6 +154,7 @@ public class Transformation {
 
   /**
    * Gets the start y coordinate point where the shape's transformation begins.
+   *
    * @return y coordinate y coordinate of shape at end of transformation.
    */
   public double getStartYCoordinate() {
@@ -111,6 +163,7 @@ public class Transformation {
 
   /**
    * Gets the end x coordinate point for the shape's transformation.
+   *
    * @return x coordinate x coordinate of shape at end of transformation.
    */
   public double getEndXCoordinate() {
@@ -119,6 +172,7 @@ public class Transformation {
 
   /**
    * Gets the end y coordinate point for the shape's transformation.
+   *
    * @return y coordinate y coordinate of shape at end of transformation.
    */
   public double getEndYCoordinate() {
@@ -127,6 +181,7 @@ public class Transformation {
 
   /**
    * Gets the start time of the transformation change.
+   *
    * @return start time of the transformation
    */
   public int getStartTime() {
@@ -135,6 +190,7 @@ public class Transformation {
 
   /**
    * Gets the end time of the transformation change.
+   *
    * @return end time of the transformation change
    */
   public int getEndTime() {
@@ -143,6 +199,7 @@ public class Transformation {
 
   /**
    * Gets the start color of the shape.
+   *
    * @return color of the shape to start, all three rbg values
    */
   public Color getStartColor() {
@@ -151,13 +208,16 @@ public class Transformation {
 
   /**
    * Gets the end color of the shape.
+   *
    * @return color the shape ends with, all three rbg values.
    */
   public Color getEndColor() {
     return this.endColor;
   }
+
   /**
    * Gets the start time of the color change.
+   *
    * @return start time of the color transformation.
    */
   public int getColorStartTime() {
@@ -166,6 +226,7 @@ public class Transformation {
 
   /**
    * Gets the end time of the color change.
+   *
    * @return end time of the color transformation.
    */
   public int getColorEndTime() {

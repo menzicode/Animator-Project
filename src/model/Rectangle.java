@@ -64,30 +64,40 @@ public class Rectangle extends AbstractShape {
     return 2 * (this.width + this.height);
   }
 
+
   /**
    * Transforms the rectangle by giving it new width and/or height values. An
    * IllegalArgumentException is thrown if the width or height is less than zero or if both values
    * are the same as the original rectangle.
    *
-   * @param newWidth          new width of rectangle
-   * @param newHeight         new height of rectangle
-   * @param finalXCoordinate     end x coordinate.
-   * @param finalYCoordinate       end y coordinate.
-   * @param sizeChangeStartTime  the time when the size transformation begins.
-   * @param sizeChangeEndTime    the time when the size transformation ends.
+   * @param newWidth         new width of rectangle
+   * @param newHeight        new height of rectangle
+   * @param timeStart        the time when the size transformation begins.
+   * @param timeEnd          the time when the size transformation ends.
    * @throws IllegalArgumentException if width and height equal original values or either is less
    *                                  than zero.
    */
-  public void transformSize(double newWidth, double newHeight,
-                        double finalXCoordinate, double finalYCoordinate,
-                        int sizeChangeStartTime, int sizeChangeEndTime
-                        ) {
-    Transformation transformation = new Transformation(newHeight, newWidth, this.reference,
-            new Point2D(finalXCoordinate, finalYCoordinate),
-            new Ticker(sizeChangeStartTime, sizeChangeEndTime), null, null,
-            null);
 
-    this.transformationList.add(transformation);
+  public void changeSize(double newWidth, double newHeight, int timeStart, int timeEnd) {
+    if (newHeight == this.getHeight() && newWidth == this.getWidth()) {
+      throw new IllegalArgumentException("Height and Width of transformation cannot be " +
+              "the same as original shape");
+    }
+    Transformation sizeTransformation = new Transformation( newHeight, newWidth,
+    null, null, new Ticker (timeStart, timeEnd),
+            null, null, null);
+
+    this.transformationList.add(sizeTransformation);
+  }
+
+  @Override
+  public void move(double newX, double newY, int timeStart, int timeEnd) {
+    super.move(newX, newY, timeStart, timeEnd);
+  }
+
+  @Override
+  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
+    super.changeColor(red, green, blue, timeStart, timeEnd);
   }
 
   public String toString() {

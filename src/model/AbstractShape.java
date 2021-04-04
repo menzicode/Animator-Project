@@ -43,6 +43,7 @@ public abstract class AbstractShape implements Shape {
       return symbol;
     }
   }
+
   /**
    * Constructs an Abstract shape with a given reference point, color, time, name.
    *
@@ -121,18 +122,22 @@ public abstract class AbstractShape implements Shape {
       throw new IllegalArgumentException("Color values can't be less than zero or all the same as" +
               "original values.");
     }
-    this.color.red = red;
-    this.color.green = green;
-    this.color.blue = blue;
+    Transformation colorTransformation = new Transformation(red, green, blue, timeStart, timeEnd);
+
+    this.transformationList.add(colorTransformation);
   }
 
-  @Override
-  public void move(Point2D newLocation, Ticker time) {
-    if (newLocation.x < 0 || newLocation.y < 0 || (this.reference == newLocation)
-            || time.getRangeStart() < this.time.getRangeStart() || time.getRangeEnd() <= time.getRangeStart()) {
+
+  public void move(double newX, double newY, int timeStart, int timeEnd) {
+    if (newX < 0 || newY < 0 || (this.reference.getX() == newX && this.reference.getY() == newY)
+            || timeStart < this.time.getRangeStart() || timeEnd
+            <= time.getRangeStart()) {
       throw new IllegalArgumentException("Invalid location or time period for movement.");
     }
+    Transformation moveTransformation = new Transformation( newX,  newY,  timeStart,
+     timeEnd);
 
+    this.transformationList.add(moveTransformation);
 
   }
 

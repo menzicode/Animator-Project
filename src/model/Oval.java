@@ -55,6 +55,35 @@ public class Oval extends AbstractShape {
     return 2 * Math.PI * Math.sqrt((radiusX * radiusX + radiusY * radiusY) / 2);
   }
 
+  /**
+   * Creates a transformation that changes the Oval's size. An IllegalArgumentException is thrown
+   * if the radius is equal to the original value or if it's less than zero.
+   *
+   * @param radiusX new radiusX value.
+   * @param radiusY new radiusY value.
+   * @param timeStart Start interval of the transformation.
+   * @param timeEnd   End interval of the transformation.
+   * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
+   *                                  than zero
+   */
+
+  public void changeSize(double radiusX, double radiusY, int timeStart, int timeEnd) {
+    Transformation sizeTransformation = new Transformation(this.reference, null,
+            new Ticker(timeStart, timeEnd), null, null,
+            null, radiusX, radiusY);
+    this.transformationList.add(sizeTransformation);
+  }
+
+  @Override
+  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
+    super.changeColor(red, green, blue, timeStart, timeEnd);
+  }
+
+  @Override
+  public void move(double newX, double newY, int timeStart, int timeEnd) {
+    super.move(newX, newY, timeStart, timeEnd);
+  }
+
   @Override
   public int compareTo(Shape o) {
     return 0;

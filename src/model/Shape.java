@@ -88,11 +88,11 @@ public interface Shape extends Comparable<Shape> {
    * Changes the color of the shape by adjusting the integer values of red, green and blue. Throws
    * an IllegalArgumentException when the integer values are less than zero or greater than 255.
    *
-   * @param red   the int value of the red color
-   * @param green the int value of the green color
-   * @param blue  the int value of the blue color
+   * @param red       the int value of the red color
+   * @param green     the int value of the green color
+   * @param blue      the int value of the blue color
    * @param timeStart the int start time value of when the color changes.
-   * @param timeEnd the int end time value of when the color ends the color change.
+   * @param timeEnd   the int end time value of when the color ends the color change.
    * @throws IllegalArgumentException when colors are less than zero or greater than 255
    */
   void changeColor(int red, int green, int blue, int timeStart, int timeEnd);
@@ -103,13 +103,23 @@ public interface Shape extends Comparable<Shape> {
    * the same, a negative value, or the period of ticks is not at the current time or in the
    * future.
    *
-   * @param newLocation the x and y coordinates of the location the shape will move to
-   * @param time        the ticks the movement will take place over
+   * @param newX      the x coordinate of the location the shape will move to
+   * @param newY      the y coordinate of the location the shape will move to
+   * @param timeStart time start interval of the move transformation.
+   * @param timeEnd   time end interval of the move transformation.
    * @throws IllegalArgumentException if the location is the same, a negative value, or the period
    *                                  of ticks is not at the current time or in the future.
    */
-  void move(Point2D newLocation, Ticker time);
+  void move(double newX, double newY, int timeStart, int timeEnd);
 
+  /**
+   * Changes the shapes Size parameters to the given value over a period of ticks.  Allows the shape
+   * to grow or shrink.
+   *
+   * @param timeStart
+   * @param timeEnd
+   */
+  void changeSize(int timeStart, int timeEnd);
 
   AbstractShape.ShapeType getShapeType();
 }

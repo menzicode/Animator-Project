@@ -38,6 +38,7 @@ public class Circle extends AbstractShape {
 
   /**
    * Returns the radius of the circle.
+   *
    * @return radius
    */
   public double getRadius() {
@@ -55,29 +56,41 @@ public class Circle extends AbstractShape {
   }
 
   /**
-   * Transforms the circle by giving it a new radius value. An IllegalArgumentException is thrown if
-   * the radius is equal to the original value or if it's less than zero.
+   * Creates a transformation that changes the circle's size. An IllegalArgumentException is thrown
+   * if the radius is equal to the original value or if it's less than zero.
    *
-   * @param radius new radius value
+   * @param newRadius new radius value.
+   * @param timeStart Start interval of the transformation.
+   * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
    *                                  than zero
    */
-  public void transform(double radius) {
+
+  public void changeSize(double newRadius, int timeStart, int timeEnd) {
     if (radius < 0 || this.radius == radius) {
       throw new IllegalArgumentException("Radius must be positive and different value than original" +
               "radius size!");
     }
-    this.radius = radius;
+    Transformation sizeTransformation = new Transformation(null, null,
+            new Ticker(timeStart, timeEnd), null, null,
+            null, newRadius);
+
+    this.transformationList.add(sizeTransformation);
   }
 
+  @Override
+  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
+    super.changeColor(red, green, blue, timeStart, timeEnd);
+  }
+
+  @Override
+  public void move(double newX, double newY, int timeStart, int timeEnd) {
+    super.move(newX, newY, timeStart, timeEnd);
+  }
 
   public String toString() {
     return String.format("model.Circle: center (%.3f,%.3f) radius %.3f",
             this.reference.getX(), this.reference.getY(), this.radius);
-  }
-
-  public void setTransformation() {
-
   }
 
   /*
