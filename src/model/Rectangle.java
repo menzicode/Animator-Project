@@ -65,7 +65,6 @@ public class Rectangle extends AbstractShape {
    * Transforms the rectangle by giving it new width and/or height values. An
    * IllegalArgumentException is thrown if the width or height is less than zero or if both values
    * are the same as the original rectangle.
-   *
    * @param newWidth         new width of rectangle
    * @param newHeight        new height of rectangle
    * @param timeStart        the time when the size transformation begins.

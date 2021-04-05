@@ -33,11 +33,6 @@ public interface IModel {
   String toString();
 
   /**
-   * Used to set the transformation of the shape;
-   */
-  void setTransformation();
-
-  /**
    * Returns a collection of copy of shapes at specific time.
    *
    * @param ticker instance of time
