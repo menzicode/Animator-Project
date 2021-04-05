@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class IModelImpl implements IModel {
   private ArrayList<Shape> shapes;
+  private ArrayList<Transformation> transformationQueue;
   private int shapeCount;
 
   /**

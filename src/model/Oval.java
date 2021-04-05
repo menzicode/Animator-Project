@@ -56,11 +56,11 @@ public class Oval extends AbstractShape {
   }
 
   /**
-   * Creates a transformation that changes the Oval's size. An IllegalArgumentException is thrown
-   * if the radius is equal to the original value or if it's less than zero.
+   * Creates a transformation that changes the Oval's size. An IllegalArgumentException is thrown if
+   * the radius is equal to the original value or if it's less than zero.
    *
-   * @param radiusX new radiusX value.
-   * @param radiusY new radiusY value.
+   * @param radiusX   new radiusX value.
+   * @param radiusY   new radiusY value.
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
@@ -88,4 +88,12 @@ public class Oval extends AbstractShape {
   public int compareTo(Shape o) {
     return 0;
   }
+
+  @Override
+  public String toString() {
+    return String.format("Type: oval\nCenter (%.3f,%.3f) X radius: %.3f, Y radius: %.3f\n",
+            this.reference.getX(), this.reference.getY(), this.radiusX, this.radiusY);
+
+  }
+
 }

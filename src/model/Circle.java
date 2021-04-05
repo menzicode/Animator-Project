@@ -89,7 +89,7 @@ public class Circle extends AbstractShape {
   }
 
   public String toString() {
-    return String.format("model.Circle: center (%.3f,%.3f) radius %.3f",
+    return String.format("Center (%.3f,%.3f) radius %.3f",
             this.reference.getX(), this.reference.getY(), this.radius);
   }
 

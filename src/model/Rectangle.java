@@ -70,10 +70,10 @@ public class Rectangle extends AbstractShape {
    * IllegalArgumentException is thrown if the width or height is less than zero or if both values
    * are the same as the original rectangle.
    *
-   * @param newWidth         new width of rectangle
-   * @param newHeight        new height of rectangle
-   * @param timeStart        the time when the size transformation begins.
-   * @param timeEnd          the time when the size transformation ends.
+   * @param newWidth  new width of rectangle
+   * @param newHeight new height of rectangle
+   * @param timeStart the time when the size transformation begins.
+   * @param timeEnd   the time when the size transformation ends.
    * @throws IllegalArgumentException if width and height equal original values or either is less
    *                                  than zero.
    */
@@ -83,8 +83,8 @@ public class Rectangle extends AbstractShape {
       throw new IllegalArgumentException("Height and Width of transformation cannot be " +
               "the same as original shape");
     }
-    Transformation sizeTransformation = new Transformation( newHeight, newWidth,
-    null, null, new Ticker (timeStart, timeEnd),
+    Transformation sizeTransformation = new Transformation(newHeight, newWidth,
+            null, null, new Ticker(timeStart, timeEnd),
             null, null, null);
 
     this.transformationList.add(sizeTransformation);
@@ -101,10 +101,11 @@ public class Rectangle extends AbstractShape {
   }
 
   public String toString() {
-    return String.format("model.Rectangle: LL corner (%.3f,%.3f) width %.3f height " +
-                    "%.3f",
+    return String.format("model.Rectangle: LL corner (%.3f,%.3f), Width: %.3f Height: " +
+                    "%.3f \nColor: %s\nAppears at t=%d\nDisappears at t=%d",
             this.reference.getX(), this.reference.getY(), this.width, this
-                    .height);
+                    .height, this.color.toString(),
+            this.getAppearance(), this.getDisappearance());
   }
 
   @Override
