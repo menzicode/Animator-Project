@@ -1,29 +1,30 @@
 package model;
 
-import org.w3c.dom.css.Rect;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 /**
  * This class represents the model for an animation with shapes. The class implements all methods
  * from the model.IModel interface.
  */
 public class IModelImpl implements IModel {
-  private ArrayList<Shape> shapes;
-  private int shapeCount;
+  protected ArrayList<Shape> shapes;
+  protected int shapeCount;
 
   /**
    * Constructs an animation model that starts with an empty animation screen.
    */
   public IModelImpl() {
-    this.shapes = new ArrayList<Shape>();
+    this.shapes = new ArrayList<>();
     this.shapeCount = 0;
   }
 
   @Override
   public void addShape(Shape object) {
+    if (shapes.contains(object)) {
+        throw new IllegalArgumentException("This shape already exists.");
+    }
     shapes.add(object);
     shapeCount++;
   }
@@ -31,7 +32,7 @@ public class IModelImpl implements IModel {
   @Override
   public void removeShape(Shape object) {
     if (!shapes.contains(object)) {
-      throw new IllegalArgumentException("This shape is not in the animation.");
+        throw new NoSuchElementException("This shape is not in the animation.");
     }
     shapes.remove(object);
     shapeCount--;
@@ -40,7 +41,7 @@ public class IModelImpl implements IModel {
   @Override
   public Shape getSpecificShape(Shape object) {
     if (!shapes.contains(object)) {
-      throw new IllegalArgumentException("This shape is not in the animation.");
+      throw new NoSuchElementException("This shape is not in the animation.");
     }
     return object;
   }
@@ -50,7 +51,7 @@ public class IModelImpl implements IModel {
     Collections.sort(shapes, new ShapeTimeComparator());
   }
 
-                   @Override
+  @Override
   public String toString() {
     Collections.sort(shapes, new ShapeTimeComparator());
     StringBuilder str = new StringBuilder("Shapes:\n");
@@ -82,7 +83,7 @@ public class IModelImpl implements IModel {
 
   @Override
   public ArrayList<Shape> getShapesAtTicker(int ticker) {
-    return null;
+    return null; //To be implemented in later weeks
   }
 
   public int getShapeCount() {

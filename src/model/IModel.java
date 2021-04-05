@@ -2,11 +2,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 public interface IModel {
 
   /**
    * Adds a given shape to the animation. The shape is in the animation for a set amount of time.
+   * Throws an IllegalArgumentException if the shape already exists.
+   * @param object Shape to be added to animation.
+   * @throws IllegalArgumentException if the shape is already in the animation.
    */
   void addShape(Shape object);
 
@@ -14,8 +18,8 @@ public interface IModel {
    * Removes a given shape. Throws an IllegalArgumentException if the shape is not in the
    * animation.
    *
-   * @param object a model.Shape object in the animation
-   * @throws IllegalArgumentException if the shape does not exist in the animation
+   * @param object the object to be removed from teh animation
+   * @throws NoSuchElementException if the shape does not exist in the animation
    */
   void removeShape(Shape object);
 
@@ -24,7 +28,7 @@ public interface IModel {
    * is not in the animation.
    *
    * @param object the model.Shape to be returned from the animation
-   * @throws IllegalArgumentException if the shape does not exist in the animation
+   * @throws NoSuchElementException the shape does not exist in the animation
    */
   Shape getSpecificShape(Shape object);
 
@@ -45,4 +49,10 @@ public interface IModel {
    * @param ticker instance of time
    */
   ArrayList<Shape> getShapesAtTicker(int ticker);
+
+  /**
+   * Returns the count of shapes in the animation.
+   * @return count of shapes in the animation
+   */
+  int getShapeCount();
 }

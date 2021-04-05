@@ -104,7 +104,7 @@ public abstract class AbstractShape implements Shape {
     return this.name;
   }
 
-
+  @Override
   public ShapeType getShapeType() {
     return this.shapeType;
   }
