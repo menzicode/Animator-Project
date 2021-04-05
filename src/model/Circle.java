@@ -5,7 +5,7 @@ package model;
  * interface.
  */
 public class Circle extends AbstractShape {
-  protected double radius;
+  protected static double radius;
 
   /**
    * Constructs a model. Circle with a given center, radius, color, time of appearance and

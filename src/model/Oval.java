@@ -4,8 +4,7 @@ package model;
  * Class used to represent Oval shape.
  */
 public class Oval extends AbstractShape {
-  double radiusX;
-  double radiusY;
+  protected static double radiusX, radiusY;
 
   /**
    * Constructor for an Oval shape. An IllegalArgumentException is thrown for radiusX and radiusY

@@ -6,7 +6,7 @@ package model;
  * interface
  */
 public class Rectangle extends AbstractShape {
-  private double width, height;
+  protected static double width, height;
 
   /**
    * Constructs a rectangle object with the given location of it's upper-left corner and dimensions.
