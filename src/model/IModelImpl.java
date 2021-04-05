@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * This class represents the model for an animation with shapes. The class implements all methods
@@ -42,7 +44,13 @@ public class IModelImpl implements IModel {
   }
 
   @Override
+  public void sort(ShapeTimeComparator comp) {
+    Collections.sort(shapes, new ShapeTimeComparator());
+  }
+
+                   @Override
   public String toString() {
+    Collections.sort(shapes, new ShapeTimeComparator());
     StringBuilder str = new StringBuilder("Shapes:\n");
     for (Shape object : shapes) {
       str.append("Name: ").append(object.getName());

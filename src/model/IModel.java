@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public interface IModel {
 
@@ -26,6 +27,12 @@ public interface IModel {
    * @throws IllegalArgumentException if the shape does not exist in the animation
    */
   Shape getSpecificShape(Shape object);
+
+  /**
+   * Sorts the list of shapes by time.
+   * @param comp the time comparison, earliest to latest
+   */
+  void sort(ShapeTimeComparator comp);
 
   /**
    * Returns a string description of the animation.
