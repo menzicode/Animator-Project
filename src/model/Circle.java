@@ -1,6 +1,5 @@
 package model;
 
-
 /**
  * This class represents a circle.  It offers all the operations mandated by the model.Shape
  * interface.
@@ -38,7 +37,6 @@ public class Circle extends AbstractShape {
 
   /**
    * Returns the radius of the circle.
-   *
    * @return radius
    */
   public double getRadius() {
@@ -58,14 +56,12 @@ public class Circle extends AbstractShape {
   /**
    * Creates a transformation that changes the circle's size. An IllegalArgumentException is thrown
    * if the radius is equal to the original value or if it's less than zero.
-   *
    * @param newRadius new radius value.
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
    *                                  than zero
    */
-
   public void changeSize(double newRadius, int timeStart, int timeEnd) {
     if (radius < 0 || this.radius == radius) {
       throw new IllegalArgumentException("Radius must be positive and different value than original" +
@@ -78,19 +74,13 @@ public class Circle extends AbstractShape {
     this.transformationList.add(sizeTransformation);
   }
 
-  @Override
-  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
-    super.changeColor(red, green, blue, timeStart, timeEnd);
-  }
-
-  @Override
-  public void move(double newX, double newY, int timeStart, int timeEnd) {
-    super.move(newX, newY, timeStart, timeEnd);
-  }
-
+  /**
+   * Creates a string representation of the circle.
+   * @return string representation
+   */
   public String toString() {
-    return String.format("model.Circle: center (%.3f,%.3f) radius %.3f",
-            this.reference.getX(), this.reference.getY(), this.radius);
+    return String.format("Circle: center (%.3f,%.3f) radius %.3f color (%0.2f,%0.2f,%0.2f)",
+            this.reference.getX(), this.reference.getY(), this.radius, this.color);
   }
 
   /*

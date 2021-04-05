@@ -21,7 +21,6 @@ public abstract class AbstractShape implements Shape {
 
     /**
      * Method for enum class used to represent enum as a string.
-     *
      * @return String representation of ShapeType.
      */
     @Override
@@ -127,7 +126,7 @@ public abstract class AbstractShape implements Shape {
     this.transformationList.add(colorTransformation);
   }
 
-
+  @Override
   public void move(double newX, double newY, int timeStart, int timeEnd) {
     if (newX < 0 || newY < 0 || (this.reference.getX() == newX && this.reference.getY() == newY)
             || timeStart < this.time.getRangeStart() || timeEnd
@@ -138,7 +137,6 @@ public abstract class AbstractShape implements Shape {
      timeEnd);
 
     this.transformationList.add(moveTransformation);
-
   }
 
 }

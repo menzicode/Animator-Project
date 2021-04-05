@@ -8,8 +8,8 @@ public class Oval extends AbstractShape {
   double radiusY;
 
   /**
-   * Constructor for an Oval shape.
-   *
+   * Constructor for an Oval shape. An IllegalArgumentException is thrown for radiusX and radiusY
+   * values less than zero or equal to each other.
    * @param radiusX          size of X radius.
    * @param radiusY          size of y radius.
    * @param startXCoordinate The x coordinate the object will originally be located.
@@ -19,12 +19,17 @@ public class Oval extends AbstractShape {
    * @param blue             Blue value for color of shape.
    * @param timeAppears      The time the object is set to appear on the display.
    * @param timeDisappears   The time the object is set to disappear on the display.
-   * @param name             string name of the shape
+   * @param name             string name of the shape.
+   * @throws IllegalArgumentException for radiusX and radiusY values less than zero or equal to
+   * each other.
    */
   public Oval(double radiusX, double radiusY, double startXCoordinate, double startYCoordinate,
               int red, int green, int blue, int timeAppears, int timeDisappears, String name) {
     super(startXCoordinate, startYCoordinate, red, green, blue, timeAppears, timeDisappears, name);
-
+    if (radiusX < 0 || radiusY < 0 || radiusX == radiusY) {
+      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as" +
+              "original values!");
+    }
     this.radiusX = radiusX;
     this.radiusY = radiusY;
     this.shapeType = ShapeType.OVAL;
@@ -86,6 +91,9 @@ public class Oval extends AbstractShape {
 
   @Override
   public int compareTo(Shape o) {
+    if (this.shapeType == o.getShapeType() && this.name == o.getName()) {
+      return 0;
+    }
     return 0;
   }
 }

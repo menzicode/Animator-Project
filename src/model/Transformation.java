@@ -19,29 +19,7 @@ public class Transformation {
   protected Ticker locationChangePeriod;
 
   /**
-   * Constructs a transformed circle. The size of the radius is transformed from its original
-   * state.
-   *
-   * @param startLocation     beginning transition coordinate.
-   * @param endLocation       end of transition coordinate.
-   * @param sizeChangePeriod  denotes time size transformation happens.
-   * @param startColor        the starting color of shape.
-   * @param endColor          ending color of shape.
-   * @param colorChangePeriod denotes time color transformation happens.
-   */
-  public Transformation(Point2D startLocation, Point2D endLocation, Ticker sizeChangePeriod,
-                        Color startColor, Color endColor, Ticker colorChangePeriod) {
-    this.startLocation = startLocation;
-    this.endLocation = endLocation;
-    this.startColor = startColor;
-    this.endColor = endColor;
-    this.sizeChangePeriod = sizeChangePeriod;
-    this.colorChangePeriod = colorChangePeriod;
-  }
-
-  /**
-   * Constructs a transformation for rectangle. Rectangle has new values for fields.
-   *
+   * Constructs a transformation for rectangle. Rectangle has new height and/or width values.
    * @param newHeight         the new height for the rectangle.
    * @param newWidth          the new width for the rectangle.
    * @param startLocation     beginning transition coordinate.
@@ -69,22 +47,21 @@ public class Transformation {
   }
 
   /**
-   * Transform Constructor for Oval Transformation.
-   *
-   * @param startLocation
-   * @param endLocation
-   * @param sizeChangePeriod
-   * @param startColor
-   * @param endColor
-   * @param colorChangePeriod
-   * @param radiusX
-   * @param radiusY
+   * Transform Constructor for Oval Transformation. The oval has new radiusX and/or radiusY values.
+   * @param startLocation  beginning transition coordinate.
+   * @param endLocation  end of transition coordinate.
+   * @param sizeChangePeriod  denotes time size transformation happens.
+   * @param startColor  the starting color of shape.
+   * @param endColor  ending color of shape.
+   * @param colorChangePeriod  denotes time color transformation happens.
+   * @param radiusX  new value for the x radius.
+   * @param radiusY  new value for the y radius.
    */
   public Transformation(Point2D startLocation, Point2D endLocation,
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
                         Ticker colorChangePeriod, double radiusX, double radiusY) {
-    if (radiusX < 0 || radiusY < 0) {
-      throw new IllegalArgumentException("Width and height must be positive and not the same as" +
+    if (radiusX < 0 || radiusY < 0 || radiusX == radiusY) {
+      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as" +
               "original values!");
     }
     this.radiusX = radiusX;
@@ -98,15 +75,15 @@ public class Transformation {
   }
 
   /**
-   * Transform Constructor for Circle Transformation.
-   *
-   * @param startLocation
-   * @param endLocation
-   * @param sizeChangePeriod
-   * @param startColor
-   * @param endColor
-   * @param colorChangePeriod
-   * @param radius
+   * Transform Constructor for Circle Transformation. The circle has a new value for the radius
+   * field.
+   * @param startLocation  beginning transition coordinate.
+   * @param endLocation  end of transition coordinate.
+   * @param sizeChangePeriod  denotes time size transformation happens.
+   * @param startColor  the starting color of shape.
+   * @param endColor  ending color of shape.
+   * @param colorChangePeriod  denotes time color transformation happens.
+   * @param radius  new value for the radius.
    */
   public Transformation(Point2D startLocation, Point2D endLocation,
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
@@ -137,6 +114,14 @@ public class Transformation {
     this.colorChangePeriod = new Ticker(timeStart, timeEnd);
   };
 
+  /**
+   * Constructor for a move.
+   * @param red red value of the new color.
+   * @param green green value of the new color.
+   * @param blue blue value of the new color.
+   * @param timeStart beginning time interval of transformation.
+   * @param timeEnd end time interval of transformation.
+   */
   public Transformation(double newX, double newY, int timeStart, int timeEnd){
     this.endLocation = new Point2D(newX, newY);
     this.locationChangePeriod = new Ticker(timeStart, timeEnd);

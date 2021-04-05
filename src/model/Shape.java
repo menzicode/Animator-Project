@@ -113,13 +113,10 @@ public interface Shape extends Comparable<Shape> {
   void move(double newX, double newY, int timeStart, int timeEnd);
 
   /**
-   * Changes the shapes Size parameters to the given value over a period of ticks.  Allows the shape
-   * to grow or shrink.
-   *
-   * @param timeStart
-   * @param timeEnd
+   * Returns the shapeType of the shape as a ShapeType enum.
+   * @return shapeType as an enum.
    */
-  void changeSize(int timeStart, int timeEnd);
-
   AbstractShape.ShapeType getShapeType();
+
+
 }

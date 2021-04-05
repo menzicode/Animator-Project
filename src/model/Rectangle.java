@@ -11,7 +11,6 @@ public class Rectangle extends AbstractShape {
   /**
    * Constructs a rectangle object with the given location of it's upper-left corner and dimensions.
    * An IllegalArgumentException is thrown for width or height values less than zero.
-   *
    * @param width            width of this rectangle
    * @param height           height of this rectangle
    * @param startXCoordinate The x coordinate the object will originally be located.
@@ -38,7 +37,6 @@ public class Rectangle extends AbstractShape {
 
   /**
    * Returns the width of the rectangle.
-   *
    * @return width
    */
   public double getWidth() {
@@ -47,7 +45,6 @@ public class Rectangle extends AbstractShape {
 
   /**
    * Returns the height of the rectangle.
-   *
    * @return height
    */
   public double getHeight() {
@@ -64,7 +61,6 @@ public class Rectangle extends AbstractShape {
     return 2 * (this.width + this.height);
   }
 
-
   /**
    * Transforms the rectangle by giving it new width and/or height values. An
    * IllegalArgumentException is thrown if the width or height is less than zero or if both values
@@ -77,7 +73,6 @@ public class Rectangle extends AbstractShape {
    * @throws IllegalArgumentException if width and height equal original values or either is less
    *                                  than zero.
    */
-
   public void changeSize(double newWidth, double newHeight, int timeStart, int timeEnd) {
     if (newHeight == this.getHeight() && newWidth == this.getWidth()) {
       throw new IllegalArgumentException("Height and Width of transformation cannot be " +
@@ -90,16 +85,10 @@ public class Rectangle extends AbstractShape {
     this.transformationList.add(sizeTransformation);
   }
 
-  @Override
-  public void move(double newX, double newY, int timeStart, int timeEnd) {
-    super.move(newX, newY, timeStart, timeEnd);
-  }
-
-  @Override
-  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
-    super.changeColor(red, green, blue, timeStart, timeEnd);
-  }
-
+  /**
+   * Creates a string representation of the rectangle.
+   * @return string representation.
+   */
   public String toString() {
     return String.format("model.Rectangle: LL corner (%.3f,%.3f) width %.3f height " +
                     "%.3f",
