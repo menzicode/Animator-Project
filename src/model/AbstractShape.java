@@ -65,6 +65,11 @@ public abstract class AbstractShape implements Shape {
   }
 
   @Override
+  public ArrayList<Transformation> getTransformationList() {
+    return transformationList;
+  }
+
+  @Override
   public double getX() {
     return this.reference.x;
   }
