@@ -4,7 +4,7 @@ package model;
  * Class used to represent Oval shape.
  */
 public class Oval extends AbstractShape {
-  protected static double radiusX, radiusY;
+  protected final double radiusX, radiusY;
 
   /**
    * Constructor for an Oval shape. An IllegalArgumentException is thrown for radiusX and radiusY
@@ -18,7 +18,7 @@ public class Oval extends AbstractShape {
    * @param blue             Blue value for color of shape.
    * @param timeAppears      The time the object is set to appear on the display.
    * @param timeDisappears   The time the object is set to disappear on the display.
-   * @param name             string name of the shape.
+   * @param name             string shape of the shape.
    * @throws IllegalArgumentException for radiusX and radiusY values less than zero or equal to
    * each other.
    */
@@ -79,28 +79,11 @@ public class Oval extends AbstractShape {
   }
 
   @Override
-  public void changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
-    super.changeColor(red, green, blue, timeStart, timeEnd);
-  }
-
-  @Override
-  public void move(double newX, double newY, int timeStart, int timeEnd) {
-    super.move(newX, newY, timeStart, timeEnd);
-  }
-
-  @Override
-  public int compareTo(Shape o) {
-    if (this.shapeType == o.getShapeType() && this.name == o.getName()) {
-      return 0;
-    }
-    return 0;
-  }
-
-  @Override
   public String toString() {
-    return String.format("Type: oval\nCenter (%.3f,%.3f) X radius: %.3f, Y radius: %.3f\n",
-            this.reference.getX(), this.reference.getY(), this.radiusX, this.radiusY);
-
+    return String.format("Name: %s\nType: oval\nCenter (%.3f,%.3f), X radius: %.3f, " +
+                    "Y radius: %.3f," + "\n" + "Color: %s\nAppears at t=%s\nDisappears at t=%s",
+            this.name, this.reference.getX(), this.reference.getY(), this.radiusX, this.radiusY,
+            this.color.toString(),this.time.getRangeStart(), this.time.getRangeEnd());
   }
 
 }

@@ -9,6 +9,7 @@ public interface IModel {
   /**
    * Adds a given shape to the animation. The shape is in the animation for a set amount of time.
    * Throws an IllegalArgumentException if the shape already exists.
+   *
    * @param object Shape to be added to animation.
    * @throws IllegalArgumentException if the shape is already in the animation.
    */
@@ -34,6 +35,7 @@ public interface IModel {
 
   /**
    * Sorts the list of shapes by time.
+   *
    * @param comp the time comparison, earliest to latest
    */
   void sort(ShapeTimeComparator comp);
@@ -52,6 +54,7 @@ public interface IModel {
 
   /**
    * Returns the count of shapes in the animation.
+   *
    * @return count of shapes in the animation
    */
   int getShapeCount();

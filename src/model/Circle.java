@@ -9,7 +9,7 @@ public class Circle extends AbstractShape {
 
   /**
    * Constructs a model. Circle with a given center, radius, color, time of appearance and
-   * disappearance, name, and shapeType. An IllegalArgumentException is thrown for radius size less
+   * disappearance, shape, and shapeType. An IllegalArgumentException is thrown for radius size less
    * than zero.
    *
    * @param radius           the radius of the circle
@@ -20,7 +20,7 @@ public class Circle extends AbstractShape {
    * @param blue             Blue value for color of shape.
    * @param timeAppears      The time the object is set to appear on the display.
    * @param timeDisappears   The time the object is set to disappear on the display.
-   * @param name             string name of the shape
+   * @param name             string shape of the shape
    * @throws IllegalArgumentException for radius less than zero
    */
   public Circle(double radius, double startXCoordinate, double startYCoordinate, int red,

@@ -4,7 +4,8 @@ package model;
  * Class used to represent transformation of a specific shape.
  */
 public class Transformation {
-
+  protected Shape shape;
+  protected TransformationType type;
   protected double newWidth;
   protected double newHeight;
   protected double radiusX;
@@ -36,6 +37,8 @@ public class Transformation {
       throw new IllegalArgumentException("Width and height must be positive and not the same as" +
               "original values!");
     }
+    this.shape = shape;
+    this.type = type;
     this.newHeight = newHeight;
     this.newWidth = newWidth;
     this.startLocation = startLocation;
@@ -48,22 +51,29 @@ public class Transformation {
 
   /**
    * Transform Constructor for Oval Transformation. The oval has new radiusX and/or radiusY values.
-   * @param startLocation  beginning transition coordinate.
-   * @param endLocation  end of transition coordinate.
+   *
+   * @param shape             the shape being transformed.
+   * @param type              the type of transformation as an Enum.
+   * @param startLocation     beginning transition coordinate.
+   * @param endLocation       end of transition coordinate.
    * @param sizeChangePeriod  denotes time size transformation happens.
-   * @param startColor  the starting color of shape.
-   * @param endColor  ending color of shape.
-   * @param colorChangePeriod  denotes time color transformation happens.
-   * @param radiusX  new value for the x radius.
-   * @param radiusY  new value for the y radius.
+   * @param startColor        the starting color of shape.
+   * @param endColor          ending color of shape.
+   * @param colorChangePeriod denotes time color transformation happens.
+   * @param radiusX           new value for the x radius.
+   * @param radiusY           new value for the y radius.
    */
-  public Transformation(Point2D startLocation, Point2D endLocation,
+  public Transformation(Shape shape, TransformationType type, Point2D startLocation,
+                        Point2D endLocation,
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
                         Ticker colorChangePeriod, double radiusX, double radiusY) {
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY) {
-      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as" +
+      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the " +
+              "same as" +
               "original values!");
     }
+    this.shape = shape;
+    this.type = type;
     this.radiusX = radiusX;
     this.radiusY = radiusY;
     this.startLocation = startLocation;
@@ -103,26 +113,37 @@ public class Transformation {
 
   /**
    * Constructor for a color transformation.
-   * @param red red value of the new color.
-   * @param green green value of the new color.
-   * @param blue blue value of the new color.
+   *
+   * @param shape     the shape being transformed.
+   * @param type      the type of transformation as an Enum.
+   * @param red       red value of the new color.
+   * @param green     green value of the new color.
+   * @param blue      blue value of the new color.
    * @param timeStart beginning time interval of transformation.
-   * @param timeEnd end time interval of transformation.
+   * @param timeEnd   end time interval of transformation.
    */
-  public Transformation(int red, int green, int blue, int timeStart, int timeEnd){
+  public Transformation(Shape shape, TransformationType type, int red, int green, int blue,
+                        int timeStart, int timeEnd) {
+    this.shape = shape;
+    this.type = type;
     this.endColor = new Color(red, green, blue);
     this.colorChangePeriod = new Ticker(timeStart, timeEnd);
-  };
+  }
 
   /**
-   * Constructor for a move.
-   * @param red red value of the new color.
-   * @param green green value of the new color.
-   * @param blue blue value of the new color.
+   * Constructor for a Move that takes in a new x and y coordinate along with a start and end time.
+   *
+   * @param shape     the shape being transformed.
+   * @param type      the type of transformation as an Enum.
+   * @param newX      the new x coordinate of the shape.
+   * @param newY      the new Y coordinate of the shape.
    * @param timeStart beginning time interval of transformation.
-   * @param timeEnd end time interval of transformation.
+   * @param timeEnd   end time interval of transformation.
    */
-  public Transformation(double newX, double newY, int timeStart, int timeEnd){
+  public Transformation(Shape shape, TransformationType type, double newX, double newY,
+                        int timeStart, int timeEnd) {
+    this.shape = shape;
+    this.type = type;
     this.endLocation = new Point2D(newX, newY);
     this.locationChangePeriod = new Ticker(timeStart, timeEnd);
 
@@ -227,20 +248,32 @@ public class Transformation {
   @Override
   public String toString() {
     String string = "";
-    if (this.endLocation != null) {
-      string = String.format("moves from (%.3f,%.3f) to (%.3f,%.3f) from t=%d to t=%d\n",
-              startLocation.getX(), startLocation.getY(), endLocation.getX(), endLocation.getY(),
-              sizeChangePeriod.getRangeStart(),
-              sizeChangePeriod.getRangeEnd());
+    if (this.type == TransformationType.MOVE) {
+      string = String.format("Shape %s moves from (%.3f,%.3f) to (%.3f,%.3f) from t=%d to t=%d\n",
+              this.shape.getName(), startLocation.getX(), startLocation.getY(), endLocation.getX(),
+              endLocation.getY(), sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
     }
 
-    if (this.endColor != null) {
-      string = string + String.format("Changes color from (%.1d, %.1d, %.1d) to " +
-                      "(%.1d, %.1d, %.1d) from t=%d to t=%d",
-              startColor.red, startColor.green, startColor.blue, endColor.red,
-              endColor.green, endColor.blue,
-              sizeChangePeriod.getRangeStart(),
-              sizeChangePeriod.getRangeEnd());
+    if (this.type == TransformationType.COLOR) {
+      string = string + String.format("Shape %s changes color from (%.1d, %.1d, %.1d) to " +
+                      "(%.1d, %.1d, %.1d) from t=%d to t=%d\n",
+              this.shape.getName(), this.shape.getRed(), this.shape.getGreen(),
+              this.shape.getBlue(), endColor.red, endColor.green, endColor.blue,
+              sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
+    }
+
+    if (this.type == TransformationType.SIZE &&
+            this.shape.getShapeType() == AbstractShape.ShapeType.RECTANGLE) {
+      string = string + String.format("Shape %s scales from Width: %.1f, Height: %.1f to " +
+                      "from t=%d to t=%d\n", this.shape.getName(), newWidth,
+              newHeight, sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
+    }
+
+    if (this.type == TransformationType.SIZE &&
+            this.shape.getShapeType() == AbstractShape.ShapeType.OVAL) {
+      string = string + String.format("Shape %s scales from Width: %.1f, Height: %.1f to " +
+                      "from t=%d to t=%d\n", this.shape.getName(), newWidth,
+              newHeight, sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
     }
     return string;
   }

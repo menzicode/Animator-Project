@@ -44,7 +44,7 @@ public abstract class AbstractShape implements Shape {
   }
 
   /**
-   * Constructs an Abstract shape with a given reference point, color, time, name.
+   * Constructs an Abstract shape with a given reference point, color, time, shape.
    *
    * @param startXCoordinate The x coordinate the object will originally be located.
    * @param startYCoordinate The y coordinate the object will originally be located.
@@ -53,7 +53,7 @@ public abstract class AbstractShape implements Shape {
    * @param blue             Blue value for color of shape.
    * @param timeAppears      The time the object is set to appear on the display.
    * @param timeDisappears   The time the object is set to disappear on the display.
-   * @param name             string name of the shape
+   * @param name             string shape of the shape
    */
   public AbstractShape(double startXCoordinate, double startYCoordinate,
                        int red, int green, int blue, int timeAppears, int timeDisappears,

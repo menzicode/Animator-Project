@@ -55,9 +55,9 @@ public interface Shape extends Comparable<Shape> {
   int getDisappearance();
 
   /**
-   * Get string name of the shape.
+   * Get string shape of the shape.
    *
-   * @return name of the shape as string
+   * @return shape of the shape as string
    */
   String getName();
 
