@@ -1,12 +1,15 @@
 package model;
 
 
+import java.util.ArrayList;
+
 /**
  * This class represents a rectangle.  It defines all the operations mandated by the model.Shape
  * interface
  */
 public class Rectangle extends AbstractShape {
-  protected final double width, height;
+  protected final double width;
+  protected final double height;
 
   /**
    * Constructs a rectangle object with the given location of it's upper-left corner and dimensions.
@@ -34,6 +37,7 @@ public class Rectangle extends AbstractShape {
     this.width = width;
     this.height = height;
     this.shapeType = ShapeType.RECTANGLE;
+    this.transformationList = new ArrayList<>();
   }
 
   /**
@@ -79,9 +83,9 @@ public class Rectangle extends AbstractShape {
    */
   public Transformation changeSize(double newWidth, double newHeight, int timeStart, int timeEnd) {
     if (newHeight == this.getHeight() && newWidth == this.getWidth()
-            || timeStart < this.getAppearance() || timeEnd >= this.getDisappearance()) {
-      throw new IllegalArgumentException("Height and Width of transformation cannot be " +
-              "the same as original shape! Time span must be within shape's time span!");
+            || timeStart < this.getAppearance() || timeEnd > this.getDisappearance()) {
+      throw new IllegalArgumentException("Height and Width of transformation cannot be "
+              + "the same as original shape! Time span must be within shape's time span!");
     }
     Transformation sizeTransformation = new Transformation(this, TransformationType.SIZE,
             newHeight, newWidth, null, null, new Ticker(timeStart, timeEnd),
@@ -97,9 +101,8 @@ public class Rectangle extends AbstractShape {
    * @return string representation.
    */
   public String toString() {
-    return String.format("Name: %s\nType: %s\nMin corner: (%.3f,%.3f) Width: %.3f, Height: " +
-                    "%.3f\n" +
-                    "Color: %s\nAppears at t=%s\nDisappears at t=%s",
+    return String.format("Name: %s\nType: %s\nMin corner: (%.1f,%.1f) Width: %.1f, Height: "
+                    + "%.1f,\n" + "Color: %s\nAppears at t=%s\nDisappears at t=%s",
             this.name, this.getShapeType(), this.reference.getX(), this.reference.getY(),
             this.getWidth(),
             this.getHeight(),

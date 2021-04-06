@@ -1,10 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Class used to represent Oval shape.
  */
 public class Oval extends AbstractShape {
-  protected final double radiusX, radiusY;
+  protected final double radiusX;
+  protected final double radiusY;
 
   /**
    * Constructor for an Oval shape. An IllegalArgumentException is thrown for radiusX and radiusY
@@ -20,18 +23,19 @@ public class Oval extends AbstractShape {
    * @param timeDisappears   The time the object is set to disappear on the display.
    * @param name             string shape of the shape.
    * @throws IllegalArgumentException for radiusX and radiusY values less than zero or equal to
-   * each other.
+   *                                  each other.
    */
   public Oval(double radiusX, double radiusY, double startXCoordinate, double startYCoordinate,
               int red, int green, int blue, int timeAppears, int timeDisappears, String name) {
     super(startXCoordinate, startYCoordinate, red, green, blue, timeAppears, timeDisappears, name);
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY) {
-      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as" +
-              "each other!");
+      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as"
+              + "each other!");
     }
     this.radiusX = radiusX;
     this.radiusY = radiusY;
     this.shapeType = ShapeType.OVAL;
+    this.transformationList = new ArrayList<>();
   }
 
   @Override
@@ -74,7 +78,7 @@ public class Oval extends AbstractShape {
   public Transformation changeSize(double radiusX, double radiusY, int timeStart, int timeEnd) {
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY || this.radiusX == radiusX
             && this.radiusY == radiusY || timeStart < this.getAppearance() || timeEnd
-            >= this.getDisappearance()) {
+            > this.getDisappearance()) {
       throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as"
               + "original values! Time span must be within shape's time span.");
     }
@@ -88,8 +92,8 @@ public class Oval extends AbstractShape {
 
   @Override
   public String toString() {
-    return String.format("Name: %s\nType: oval\nCenter (%.3f,%.3f), X radius: %.3f, " +
-                    "Y radius: %.3f," + "\n" + "Color: %s\nAppears at t=%s\nDisappears at t=%s",
+    return String.format("Name: %s\nType: oval\nCenter (%.1f,%.1f), X radius: %.1f, "
+                    + "Y radius: %.1f" + "\n" + "Color: %s\nAppears at t=%s\nDisappears at t=%s",
             this.name, this.reference.getX(), this.reference.getY(), this.radiusX, this.radiusY,
             this.color.toString(),this.time.getRangeStart(), this.time.getRangeEnd());
   }

@@ -37,8 +37,8 @@ public class Transformation {
                         Point2D startLocation, Point2D endLocation, Ticker sizeChangePeriod,
                         Color startColor, Color endColor, Ticker colorChangePeriod) {
     if (newWidth < 0 || newHeight < 0) {
-      throw new IllegalArgumentException("Width and height must be positive and not the same as" +
-              "original values!");
+      throw new IllegalArgumentException("Width and height must be positive and not the same as"
+              + "original values!");
     }
     this.shape = shape;
     this.type = type;
@@ -71,9 +71,8 @@ public class Transformation {
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
                         Ticker colorChangePeriod, double radiusX, double radiusY) {
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY) {
-      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the " +
-              "same as" +
-              "original values!");
+      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the "
+              + "same as" + "original values!");
     }
     this.shape = shape;
     this.type = type;
@@ -106,8 +105,8 @@ public class Transformation {
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
                         Ticker colorChangePeriod, double radius) {
     if (radius < 0) {
-      throw new IllegalArgumentException("Radius must be positive and not the same as" +
-              "original value!");
+      throw new IllegalArgumentException("Radius must be positive and not the same as"
+              + "original value!");
     }
     this.shape = shape;
     this.type = type;
@@ -199,7 +198,13 @@ public class Transformation {
    * @return start time of the transformation
    */
   public int getStartTime() {
-    return this.sizeChangePeriod.getRangeStart();
+    if (this.sizeChangePeriod == null && this.colorChangePeriod == null)  {
+      return this.locationChangePeriod.getRangeStart();
+    } else if (this.sizeChangePeriod == null && this.locationChangePeriod == null) {
+      return this.colorChangePeriod.getRangeStart();
+    } else {
+      return sizeChangePeriod.getRangeStart();
+    }
   }
 
   /**
@@ -208,7 +213,13 @@ public class Transformation {
    * @return end time of the transformation change
    */
   public int getEndTime() {
-    return this.sizeChangePeriod.getRangeEnd();
+    if (this.sizeChangePeriod == null && this.colorChangePeriod == null)  {
+      return this.locationChangePeriod.getRangeEnd();
+    } else if (this.sizeChangePeriod == null && this.locationChangePeriod == null) {
+      return this.colorChangePeriod.getRangeEnd();
+    } else {
+      return sizeChangePeriod.getRangeEnd();
+    }
   }
 
   /**
@@ -257,40 +268,41 @@ public class Transformation {
   public String toString() {
     String string = "";
     if (this.type == TransformationType.MOVE) {
-      string = String.format("Shape %s moves from (%.3f,%.3f) to (%.3f,%.3f) from t=%d to t=%d\n",
-              this.shape.getName(), startLocation.getX(), startLocation.getY(), endLocation.getX(),
-              endLocation.getY(), sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
+      string = String.format("Shape %s moves from (%.1f,%.1f) to (%.1f,%.1f) from t=%d to t=%d\n",
+              this.shape.getName(), this.shape.getX(), this.shape.getY(),
+              this.getEndXCoordinate(), this.getEndYCoordinate(),
+              this.locationChangePeriod.getRangeStart(), this.locationChangePeriod.getRangeEnd());
     }
 
     if (this.type == TransformationType.COLOR) {
-      string = string + String.format("Shape %s changes color from (%.1d, %.1d, %.1d) to " +
-                      "(%.1d, %.1d, %.1d) from t=%d to t=%d\n",
+      string = string + String.format("Shape %s changes color from (%d, %d, %d) to "
+                      + "(%d, %d, %d) from t=%d to t=%d\n",
               this.shape.getName(), this.shape.getRed(), this.shape.getGreen(),
               this.shape.getBlue(), endColor.red, endColor.green, endColor.blue,
-              sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
+              this.colorChangePeriod.getRangeStart(), this.colorChangePeriod.getRangeEnd());
     }
 
-    if (this.type == TransformationType.SIZE &&
-            this.shape.getShapeType() == AbstractShape.ShapeType.RECTANGLE) {
-      string = string + String.format("Shape %s scales from Width: %.1f, Height: %.1f to " +
-                      "from t=%d to t=%d\n", this.shape.getName(), newWidth,
+    if (this.type == TransformationType.SIZE
+            && this.shape.getShapeType() == AbstractShape.ShapeType.RECTANGLE) {
+      string = string + String.format("Shape %s scales from Width: %.1f, Height: %.1f to "
+                      + "from t=%d to t=%d\n", this.shape.getName(), newWidth,
               newHeight, sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
     }
 
-    if (this.type == TransformationType.SIZE &&
-            this.shape.getShapeType() == AbstractShape.ShapeType.OVAL) {
+    if (this.type == TransformationType.SIZE
+            && this.shape.getShapeType() == AbstractShape.ShapeType.OVAL) {
       Oval shape = (Oval)this.shape;
-      string = string + String.format("Shape %s scales from RadiusX: %.1f, RadiusY: %.1f to " +
-                      "RadiusX: %.1f, RadiusY %.1f from t=%d to t=%d\n", this.shape.getName(),
+      string = string + String.format("Shape %s scales from RadiusX: %.1f, RadiusY: %.1f to "
+                      + "RadiusX: %.1f, RadiusY %.1f from t=%d to t=%d\n", this.shape.getName(),
               shape.radiusX, shape.radiusY, radiusX, radiusY, sizeChangePeriod.getRangeStart(),
               sizeChangePeriod.getRangeEnd());
     }
 
-    if (this.type == TransformationType.SIZE &&
-            this.shape.getShapeType() == AbstractShape.ShapeType.CIRCLE) {
+    if (this.type == TransformationType.SIZE
+            && this.shape.getShapeType() == AbstractShape.ShapeType.CIRCLE) {
       Circle shape = (Circle)this.shape;
-      string = string + String.format("Shape %s scales from Radius: %.1f to " +
-                      "Radius: %.1f from t=%d to t=%d\n", this.shape.getName(),
+      string = string + String.format("Shape %s scales from Radius: %.1f to "
+                      + "Radius: %.1f from t=%d to t=%d\n", this.shape.getName(),
               shape.radius, radius, sizeChangePeriod.getRangeStart(),
               sizeChangePeriod.getRangeEnd());
     }

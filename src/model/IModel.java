@@ -1,9 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.NoSuchElementException;
 
+/**
+ * This represents a model for the animation and its required methods.
+ */
 public interface IModel {
 
   /**
@@ -63,7 +65,7 @@ public interface IModel {
    * @param timeStart time start interval of the move transformation.
    * @param timeEnd   time end interval of the move transformation.
    * @throws IllegalArgumentException if the location is the same, a negative value, or the period
-   * of ticks is not at the current time or in the future.
+   *                                  of ticks is not at the current time or in the future.
    * @throws NoSuchElementException if shape is not in animation.
    */
   void addMoveTransformation(Shape shape, double newX, double newY, int timeStart, int timeEnd);
@@ -79,11 +81,11 @@ public interface IModel {
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the width or height are equal to the original value or if
-   * it's less than zero.
+   *                                  it's less than zero.
    * @throws NoSuchElementException if shape is not in animation.
    */
-  void addSizeTransformation(Rectangle rectangle, double newWidth, double newHeight, int timeStart,
-                             int timeEnd);
+  void addRectangleSizeTransformation(Rectangle rectangle, double newWidth, double newHeight,
+                                      int timeStart, int timeEnd);
 
   /**
    * Creates a transformation that changes the Oval's size. An IllegalArgumentException is thrown if
@@ -96,10 +98,10 @@ public interface IModel {
    * @param timeStart  Start interval of the transformation.
    * @param timeEnd    End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
-   * than zero.
+   *                                  than zero.
    * @throws NoSuchElementException if shape is not in animation.
    */
-  void addSizeTransformation(Oval oval, double newRadiusX, double newRadiusY, int timeStart,
+  void addOvalSizeTransformation(Oval oval, double newRadiusX, double newRadiusY, int timeStart,
                              int timeEnd);
 
   /**
@@ -112,10 +114,10 @@ public interface IModel {
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
-   * than zero.
+   *                                  than zero.
    * @throws NoSuchElementException if shape is not in animation.
    */
-  void addSizeTransformation(Circle circle, double newRadius, int timeStart,
+  void addCircleSizeTransformation(Circle circle, double newRadius, int timeStart,
                              int timeEnd);
 
   /**

@@ -25,7 +25,7 @@ public class IModelImpl implements IModel {
   @Override
   public void addShape(Shape object) {
     if (shapes.contains(object)) {
-        throw new IllegalArgumentException("This shape already exists.");
+      throw new IllegalArgumentException("This shape already exists.");
     }
     shapes.add(object);
     shapeCount++;
@@ -34,7 +34,7 @@ public class IModelImpl implements IModel {
   @Override
   public void removeShape(Shape object) {
     if (!shapes.contains(object)) {
-        throw new NoSuchElementException("This shape is not in the animation.");
+      throw new NoSuchElementException("This shape is not in the animation.");
     }
     shapes.remove(object);
     shapeCount--;
@@ -57,28 +57,55 @@ public class IModelImpl implements IModel {
     if (!shapes.contains(shape)) {
       throw new NoSuchElementException("Shape not in the animation, please add the shape first!");
     }
-
     transformationList.add(shape.changeColor(red, green, blue, timeStart, timeEnd));
   }
 
   @Override
-  public void addMoveTransformation(Shape shape, double newX, double newY, int timeStart, int timeEnd) {
-
+  public void addMoveTransformation(Shape shape, double newX, double newY, int timeStart,
+                                    int timeEnd) {
+    if (newX < 0 || newY < 0) {
+      throw new IllegalArgumentException("Coordinates must be a positive!");
+    }
+    if (!shapes.contains(shape)) {
+      throw new NoSuchElementException("Shape not in the animation, please add the shape first!");
+    }
+    transformationList.add(shape.move(newX, newY, timeStart, timeEnd));
   }
 
   @Override
-  public void addSizeTransformation(Rectangle rectangle, double newWidth, double newHeight, int timeStart, int timeEnd) {
-
+  public void addRectangleSizeTransformation(Rectangle rectangle, double newWidth, double newHeight,
+                                             int timeStart, int timeEnd) {
+    if (newWidth < 0 || newHeight < 0) {
+      throw new IllegalArgumentException("Width and height must be positive numbers!");
+    }
+    if (!shapes.contains(rectangle)) {
+      throw new NoSuchElementException("Shape not in the animation, please add the shape first!");
+    }
+    transformationList.add(rectangle.changeSize(newWidth, newHeight, timeStart, timeEnd));
   }
 
   @Override
-  public void addSizeTransformation(Oval oval, double newRadiusX, double newRadiusY, int timeStart, int timeEnd) {
-
+  public void addOvalSizeTransformation(Oval oval, double newRadiusX, double newRadiusY,
+                                        int timeStart, int timeEnd) {
+    if (newRadiusX < 0 || newRadiusY < 0) {
+      throw new IllegalArgumentException("newRadiusX and newRadiusY must be positive numbers!");
+    }
+    if (!shapes.contains(oval)) {
+      throw new NoSuchElementException("Shape not in the animation, please add the shape first!");
+    }
+    transformationList.add(oval.changeSize(newRadiusX, newRadiusY, timeStart, timeEnd));
   }
 
   @Override
-  public void addSizeTransformation(Circle circle, double newRadius, int timeStart, int timeEnd) {
-
+  public void addCircleSizeTransformation(Circle circle, double newRadius, int timeStart,
+                                          int timeEnd) {
+    if (newRadius < 0) {
+      throw new IllegalArgumentException("newRaidius must be a positive number!");
+    }
+    if (!shapes.contains(circle)) {
+      throw new NoSuchElementException("Shape not in the animation, please add the shape first!");
+    }
+    transformationList.add(circle.changeSize(newRadius, timeStart, timeEnd));
   }
 
   @Override
@@ -94,12 +121,18 @@ public class IModelImpl implements IModel {
   @Override
   public String toString() {
     Collections.sort(shapes, new ShapeTimeComparator());
-    StringBuilder str = new StringBuilder("Shapes:\n");
+    Collections.sort(transformationList, new TransformationTimeComparator());
+    StringBuilder str = new StringBuilder("Shapes:");
     for (Shape object : shapes) {
-      str.append(object.toString()).append("\n");
+      str.append("\n").append(object.toString()).append("\n");
+    }
+    str.append("\n");
+    for (Transformation object : transformationList) {
+      str.append(object.toString());
     }
     return str.toString();
   }
+
   @Override
   public ArrayList<Shape> getShapesAtTicker(int ticker) {
     return null; //To be implemented in later weeks

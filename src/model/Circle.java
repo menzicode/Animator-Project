@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * This class represents a circle.  It offers all the operations mandated by the model.Shape
  * interface.
@@ -33,6 +35,7 @@ public class Circle extends AbstractShape {
     }
     this.radius = radius;
     super.shapeType = ShapeType.CIRCLE;
+    this.transformationList = new ArrayList<>();
   }
 
   /**
@@ -65,7 +68,7 @@ public class Circle extends AbstractShape {
    */
   public Transformation changeSize(double newRadius, int timeStart, int timeEnd) {
     if (newRadius < 0 || this.radius == newRadius || timeStart < this.getAppearance() || timeEnd
-            >= this.getDisappearance()) {
+            > this.getDisappearance()) {
       throw new IllegalArgumentException("Radius must be positive and different value than original"
               + "radius size! Time span must be within shape's time span!");
     }
@@ -82,8 +85,8 @@ public class Circle extends AbstractShape {
    * @return string representation
    */
   public String toString() {
-    return String.format("Name: %s\nType: circle\nCenter (%.3f,%.3f), radius: %.3f,\n" +
-                    "Color: %s\nAppears at t=%s\nDisappears at t=%s", this.name,
+    return String.format("Name: %s\nType: circle\nCenter (%.1f,%.1f), radius: %.1f\n"
+                    + "Color: %s\nAppears at t=%s\nDisappears at t=%s", this.name,
             this.reference.getX(), this.reference.getY(), this.radius,
             this.color.toString(),this.time.getRangeStart(), this.time.getRangeEnd());
   }
