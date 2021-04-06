@@ -123,9 +123,9 @@ public abstract class AbstractShape implements Shape {
   public Transformation changeColor(int red, int green, int blue, int timeStart, int timeEnd) {
     if (this.color.red == red && this.color.green == green
             && this.color.blue == blue || timeStart < this.getAppearance() || timeEnd
-            >= this.getDisappearance()) {
-      throw new IllegalArgumentException("Color values can't be less than zero or all the same as" +
-              "original values! Time span must be within shape's time span!");
+            > this.getDisappearance()) {
+      throw new IllegalArgumentException("Color values can't be less than zero or all the same as"
+              + "original values! Time span must be within shape's time span!");
     }
     Transformation colorTransformation = new Transformation(this, TransformationType.COLOR,
             red, green, blue, timeStart, timeEnd);
@@ -138,9 +138,9 @@ public abstract class AbstractShape implements Shape {
   public Transformation move(double newX, double newY, int timeStart, int timeEnd) {
     if (newX < 0 || newY < 0 || (this.reference.getX() == newX && this.reference.getY() == newY)
             || timeStart < this.getAppearance() || timeEnd
-            >= this.getDisappearance()) {
-      throw new IllegalArgumentException("Invalid location or time period for movement. " +
-              "Time span must be within shape's time span!");
+            > this.getDisappearance()) {
+      throw new IllegalArgumentException("Invalid location or time period for movement. "
+              + "Time span must be within shape's time span!");
     }
     Transformation moveTransformation = new Transformation( this, TransformationType.MOVE,
             newX,  newY,  timeStart, timeEnd);

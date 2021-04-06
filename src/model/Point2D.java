@@ -23,9 +23,9 @@ public class Point2D {
   }
 
   /**
-   * Compute and return the Euclidean distance of this point to the origin
+   * Compute and return the Euclidean distance of this point to the origin.
    *
-   * @return the euclidean distance
+   * @return the euclidean distance.
    */
 
   public double distToOrigin() {
