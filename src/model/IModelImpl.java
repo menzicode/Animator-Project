@@ -57,7 +57,8 @@ public class IModelImpl implements IModel {
     if (!shapes.contains(shape)) {
       throw new NoSuchElementException("Shape not in the animation, please add the shape first!");
     }
-    shape.changeColor(red, green, blue, timeStart, timeEnd);
+
+    transformationList.add(shape.changeColor(red, green, blue, timeStart, timeEnd));
   }
 
   @Override

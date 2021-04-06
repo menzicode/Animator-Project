@@ -93,9 +93,10 @@ public interface Shape {
    * @param blue      the int value of the blue color
    * @param timeStart the int start time value of when the color changes.
    * @param timeEnd   the int end time value of when the color ends the color change.
+   * @returns transformation object.
    * @throws IllegalArgumentException when colors are less than zero or greater than 255
    */
-  void changeColor(int red, int green, int blue, int timeStart, int timeEnd);
+  Transformation changeColor(int red, int green, int blue, int timeStart, int timeEnd);
 
   /**
    * Changes the shapes newLocation to the given value over a period of ticks. This allows the shape
@@ -107,10 +108,11 @@ public interface Shape {
    * @param newY      the y coordinate of the location the shape will move to
    * @param timeStart time start interval of the move transformation.
    * @param timeEnd   time end interval of the move transformation.
+   * @returns transformation object.
    * @throws IllegalArgumentException if the location is the same, a negative value, or the period
    *                                  of ticks is not at the current time or in the future.
    */
-  void move(double newX, double newY, int timeStart, int timeEnd);
+  Transformation move(double newX, double newY, int timeStart, int timeEnd);
 
   /**
    * Returns the shapeType of the shape as a ShapeType enum.

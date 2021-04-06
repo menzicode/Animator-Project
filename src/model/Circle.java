@@ -59,10 +59,11 @@ public class Circle extends AbstractShape {
    * @param newRadius new radius value.
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
+   * @returns transformation object.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
    *                                  than zero
    */
-  public void changeSize(double newRadius, int timeStart, int timeEnd) {
+  public Transformation changeSize(double newRadius, int timeStart, int timeEnd) {
     if (newRadius < 0 || this.radius == newRadius || timeStart < this.getAppearance() || timeEnd
             >= this.getDisappearance()) {
       throw new IllegalArgumentException("Radius must be positive and different value than original"
@@ -73,6 +74,7 @@ public class Circle extends AbstractShape {
             null, null, newRadius);
 
     this.transformationList.add(sizeTransformation);
+    return sizeTransformation;
   }
 
   /**
