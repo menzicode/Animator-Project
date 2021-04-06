@@ -72,9 +72,10 @@ public class Oval extends AbstractShape {
    */
   public void changeSize(double radiusX, double radiusY, int timeStart, int timeEnd) {
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY || this.radiusX == radiusX
-            && this.radiusY == radiusY) {
+            && this.radiusY == radiusY || timeStart < this.getAppearance() || timeEnd
+            >= this.getDisappearance()) {
       throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as"
-              + "original values!");
+              + "original values! Time span must be within shape's time span.");
     }
     Transformation sizeTransformation = new Transformation(this,TransformationType.SIZE,
             this.reference, null, new Ticker(timeStart, timeEnd), null,
