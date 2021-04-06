@@ -48,37 +48,6 @@ public class IModelImpl implements IModel {
     return object;
   }
 
-  @Override
-  public void addColorTransformation(Shape shape, int red, int green, int blue,
-                                     int timeStart, int timeEnd) {
-    getSpecificShape(shape).changeColor(red, green, blue, timeStart, timeEnd);
-    transformationList.addAll(shape.getTransformationList());
-
-  }
-
-  @Override
-  public void addMoveTransformation(Shape shape, double newX, double newY,
-                                    int timeStart, int timeEnd) {
-    getSpecificShape(shape).move(newX, newY, timeStart, timeEnd);
-    transformationList.addAll(shape.getTransformationList());
-  }
-
-  @Override
-  public void addSizeTransformation(Rectangle rectangle, double newWidth,
-                                    double newHeight, int timeStart, int timeEnd) {
-
-  }
-
-  @Override
-  public void addSizeTransformation(Oval oval, double newRadiusX,
-                                    double newRadiusY, int timeStart, int timeEnd) {
-
-  }
-
-  @Override
-  public void addSizeTransformation(Circle circle, double newRadius, int timeStart, int timeEnd) {
-
-  }
 
 
   @Override
@@ -86,8 +55,8 @@ public class IModelImpl implements IModel {
     Collections.sort(shapes, new ShapeTimeComparator());
   }
 
-
-  public void sortTransformations(TransformationTimeComparator comp) {
+  @Override
+  public ArrayList<Transformation> sortTransformations() {
     Collections.sort(transformationList, new TransformationTimeComparator());
   }
 

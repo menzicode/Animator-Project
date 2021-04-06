@@ -36,6 +36,7 @@ public interface IModel {
   /**
    * Changes the color of the shape by adjusting the integer values of red, green and blue. Throws
    * an IllegalArgumentException when the integer values are less than zero or greater than 255.
+   * Throws NoSuchElementException if shape is not in the animation.
    *
    * @param shape     the shape whose color is changing.
    * @param red       the int value of the red color.
@@ -43,7 +44,9 @@ public interface IModel {
    * @param blue      the int value of the blue color.
    * @param timeStart the int start time value of when the color changes.
    * @param timeEnd   the int end time value of when the color ends the color change.
-   * @throws IllegalArgumentException when colors are less than zero or greater than 255
+   * @throws IllegalArgumentException when colors are less than zero or greater than 255.
+   * @throws NoSuchElementException if shape is not in animation.
+   *
    */
   void addColorTransformation(Shape shape, int red, int green, int blue,
                               int timeStart, int timeEnd);
@@ -52,7 +55,7 @@ public interface IModel {
    * Changes the shapes newLocation to the given value over a period of ticks. This allows the shape
    * to move from one location to another. An IllegalArgumentException is thrown if the location is
    * the same, a negative value, or the period of ticks is not at the current time or in the
-   * future.
+   * future. Throws NoSuchElementException if shape is not in the animation.
    *
    * @param shape     the shape that moves.
    * @param newX      the x coordinate of the location the shape will move to
@@ -60,13 +63,15 @@ public interface IModel {
    * @param timeStart time start interval of the move transformation.
    * @param timeEnd   time end interval of the move transformation.
    * @throws IllegalArgumentException if the location is the same, a negative value, or the period
-   *                                  of ticks is not at the current time or in the future.
+   * of ticks is not at the current time or in the future.
+   * @throws NoSuchElementException if shape is not in animation.
    */
   void addMoveTransformation(Shape shape, double newX, double newY, int timeStart, int timeEnd);
 
   /**
    * Creates a transformation that changes the Oval's size. An IllegalArgumentException is thrown if
    * the radius is equal to the original value or if it's less than zero.
+   * Throws NoSuchElementException if shape is not in the animation.
    *
    * @param rectangle the oval that changes size.
    * @param newWidth  new width value.
@@ -74,7 +79,8 @@ public interface IModel {
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the width or height are equal to the original value or if
-   *                                  it's less than zero.
+   * it's less than zero.
+   * @throws NoSuchElementException if shape is not in animation.
    */
   void addSizeTransformation(Rectangle rectangle, double newWidth, double newHeight, int timeStart,
                              int timeEnd);
@@ -82,6 +88,7 @@ public interface IModel {
   /**
    * Creates a transformation that changes the Oval's size. An IllegalArgumentException is thrown if
    * the radius is equal to the original value or if it's less than zero.
+   * Throws NoSuchElementException if shape is not in the animation.
    *
    * @param oval       the oval that changes size.
    * @param newRadiusX new radiusX value.
@@ -89,21 +96,24 @@ public interface IModel {
    * @param timeStart  Start interval of the transformation.
    * @param timeEnd    End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
-   *                                  than zero.
+   * than zero.
+   * @throws NoSuchElementException if shape is not in animation.
    */
   void addSizeTransformation(Oval oval, double newRadiusX, double newRadiusY, int timeStart,
                              int timeEnd);
 
   /**
-   * Creates a transformation that changes the circle's size. An IllegalArgumentException is thrown
+   * Creates a transformation that changes the Circle's size. An IllegalArgumentException is thrown
    * if the radius is equal to the original value or if it's less than zero.
+   * Throws NoSuchElementException if shape is not in the animation.
    *
    * @param circle    the circle that changes size.
    * @param newRadius new radius value.
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
-   *                                  than zero
+   * than zero.
+   * @throws NoSuchElementException if shape is not in animation.
    */
   void addSizeTransformation(Circle circle, double newRadius, int timeStart,
                              int timeEnd);

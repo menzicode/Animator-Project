@@ -73,19 +73,22 @@ public class Rectangle extends AbstractShape {
    * @param newHeight new height of rectangle
    * @param timeStart the time when the size transformation begins.
    * @param timeEnd   the time when the size transformation ends.
+   * @returns transformation object.
    * @throws IllegalArgumentException if width and height equal original values or either is less
    *                                  than zero.
    */
-  public void changeSize(double newWidth, double newHeight, int timeStart, int timeEnd) {
-    if (newHeight == this.getHeight() && newWidth == this.getWidth()) {
+  public Transformation changeSize(double newWidth, double newHeight, int timeStart, int timeEnd) {
+    if (newHeight == this.getHeight() && newWidth == this.getWidth()
+            || timeStart < this.getAppearance() || timeEnd >= this.getDisappearance()) {
       throw new IllegalArgumentException("Height and Width of transformation cannot be " +
-              "the same as original shape");
+              "the same as original shape! Time span must be within shape's time span!");
     }
     Transformation sizeTransformation = new Transformation(this, TransformationType.SIZE,
             newHeight, newWidth, null, null, new Ticker(timeStart, timeEnd),
             null, null, null);
 
     this.transformationList.add(sizeTransformation);
+    return sizeTransformation;
   }
 
   /**
