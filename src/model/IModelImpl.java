@@ -18,6 +18,7 @@ public class IModelImpl implements IModel {
    */
   public IModelImpl() {
     this.shapes = new ArrayList<>();
+    this.transformationList = new ArrayList<>();
     this.shapeCount = 0;
   }
 

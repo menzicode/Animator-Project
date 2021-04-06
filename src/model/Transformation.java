@@ -279,9 +279,20 @@ public class Transformation {
 
     if (this.type == TransformationType.SIZE &&
             this.shape.getShapeType() == AbstractShape.ShapeType.OVAL) {
-      string = string + String.format("Shape %s scales from Width: %.1f, Height: %.1f to " +
-                      "from t=%d to t=%d\n", this.shape.getName(), newWidth,
-              newHeight, sizeChangePeriod.getRangeStart(), sizeChangePeriod.getRangeEnd());
+      Oval shape = (Oval)this.shape;
+      string = string + String.format("Shape %s scales from RadiusX: %.1f, RadiusY: %.1f to " +
+                      "RadiusX: %.1f, RadiusY %.1f from t=%d to t=%d\n", this.shape.getName(),
+              shape.radiusX, shape.radiusY, radiusX, radiusY, sizeChangePeriod.getRangeStart(),
+              sizeChangePeriod.getRangeEnd());
+    }
+
+    if (this.type == TransformationType.SIZE &&
+            this.shape.getShapeType() == AbstractShape.ShapeType.CIRCLE) {
+      Circle shape = (Circle)this.shape;
+      string = string + String.format("Shape %s scales from Radius: %.1f to " +
+                      "Radius: %.1f from t=%d to t=%d\n", this.shape.getName(),
+              shape.radius, radius, sizeChangePeriod.getRangeStart(),
+              sizeChangePeriod.getRangeEnd());
     }
     return string;
   }
