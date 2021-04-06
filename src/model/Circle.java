@@ -5,7 +5,7 @@ package model;
  * interface.
  */
 public class Circle extends AbstractShape {
-  protected static double radius;
+  protected final double radius;
 
   /**
    * Constructs a model. Circle with a given center, radius, color, time of appearance and
@@ -63,13 +63,13 @@ public class Circle extends AbstractShape {
    *                                  than zero
    */
   public void changeSize(double newRadius, int timeStart, int timeEnd) {
-    if (radius < 0 || this.radius == radius) {
-      throw new IllegalArgumentException("Radius must be positive and different value than original" +
-              "radius size!");
+    if (newRadius < 0 || this.radius == newRadius) {
+      throw new IllegalArgumentException("Radius must be positive and different value than original"
+              + "radius size!");
     }
-    Transformation sizeTransformation = new Transformation(null, null,
-            new Ticker(timeStart, timeEnd), null, null,
-            null, newRadius);
+    Transformation sizeTransformation = new Transformation(this, TransformationType.SIZE,
+            null, null, new Ticker(timeStart, timeStart), null,
+            null, null, newRadius);
 
     this.transformationList.add(sizeTransformation);
   }
@@ -79,19 +79,10 @@ public class Circle extends AbstractShape {
    * @return string representation
    */
   public String toString() {
-    return String.format("Circle: center (%.3f,%.3f) radius %.3f color (%0.2f,%0.2f,%0.2f)",
-            this.reference.getX(), this.reference.getY(), this.radius, this.color);
+    return String.format("Name: %s\nType: circle\nCenter (%.3f,%.3f), radius: %.3f,\n" +
+                    "Color: %s\nAppears at t=%s\nDisappears at t=%s", this.name,
+            this.reference.getX(), this.reference.getY(), this.radius,
+            this.color.toString(),this.time.getRangeStart(), this.time.getRangeEnd());
   }
 
-  /*
-  Began implementation of compare to for Shape using shape type and shape name as parameters.
-  will further iron out necessary comparisons for compare.
-   */
-  @Override
-  public int compareTo(Shape o) {
-    if (this.shapeType == o.getShapeType() && this.name.equals(o.getName())) {
-
-    }
-    return 0;
-  }
 }

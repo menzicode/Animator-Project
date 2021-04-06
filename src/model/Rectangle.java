@@ -103,9 +103,4 @@ public class Rectangle extends AbstractShape {
             this.color.toString(), this.time.getRangeStart(),
             this.time.getRangeEnd());
   }
-
-  @Override
-  public int compareTo(Shape o) {
-    return 0;
-  }
 }

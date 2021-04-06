@@ -121,7 +121,8 @@ public abstract class AbstractShape implements Shape {
       throw new IllegalArgumentException("Color values can't be less than zero or all the same as" +
               "original values.");
     }
-    Transformation colorTransformation = new Transformation(red, green, blue, timeStart, timeEnd);
+    Transformation colorTransformation = new Transformation(this, TransformationType.COLOR,
+            red, green, blue, timeStart, timeEnd);
 
     this.transformationList.add(colorTransformation);
   }
@@ -133,8 +134,8 @@ public abstract class AbstractShape implements Shape {
             <= time.getRangeStart()) {
       throw new IllegalArgumentException("Invalid location or time period for movement.");
     }
-    Transformation moveTransformation = new Transformation( newX,  newY,  timeStart,
-     timeEnd);
+    Transformation moveTransformation = new Transformation( this, TransformationType.MOVE,
+            newX,  newY,  timeStart, timeEnd);
 
     this.transformationList.add(moveTransformation);
   }

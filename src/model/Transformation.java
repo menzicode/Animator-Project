@@ -21,6 +21,9 @@ public class Transformation {
 
   /**
    * Constructs a transformation for rectangle. Rectangle has new height and/or width values.
+   *
+   * @param shape             the shape being transformed.
+   * @param type              the type of transformation as an Enum.
    * @param newHeight         the new height for the rectangle.
    * @param newWidth          the new width for the rectangle.
    * @param startLocation     beginning transition coordinate.
@@ -30,9 +33,9 @@ public class Transformation {
    * @param endColor          ending color of shape.
    * @param colorChangePeriod denotes time color transformation happens.
    */
-  public Transformation(double newHeight, double newWidth, Point2D startLocation, Point2D endLocation,
-                        Ticker sizeChangePeriod, Color startColor, Color endColor,
-                        Ticker colorChangePeriod) {
+  public Transformation(Shape shape, TransformationType type, double newHeight, double newWidth,
+                        Point2D startLocation, Point2D endLocation, Ticker sizeChangePeriod,
+                        Color startColor, Color endColor, Ticker colorChangePeriod) {
     if (newWidth < 0 || newHeight < 0) {
       throw new IllegalArgumentException("Width and height must be positive and not the same as" +
               "original values!");
@@ -87,21 +90,27 @@ public class Transformation {
   /**
    * Transform Constructor for Circle Transformation. The circle has a new value for the radius
    * field.
-   * @param startLocation  beginning transition coordinate.
-   * @param endLocation  end of transition coordinate.
+   *
+   * @param shape             the shape being transformed.
+   * @param type              the type of transformation as an Enum.
+   * @param startLocation     beginning transition coordinate.
+   * @param endLocation       end of transition coordinate.
    * @param sizeChangePeriod  denotes time size transformation happens.
-   * @param startColor  the starting color of shape.
-   * @param endColor  ending color of shape.
-   * @param colorChangePeriod  denotes time color transformation happens.
-   * @param radius  new value for the radius.
+   * @param startColor        the starting color of shape.
+   * @param endColor          ending color of shape.
+   * @param colorChangePeriod denotes time color transformation happens.
+   * @param radius            new value for the radius.
    */
-  public Transformation(Point2D startLocation, Point2D endLocation,
+  public Transformation(Shape shape, TransformationType type, Point2D startLocation,
+                        Point2D endLocation,
                         Ticker sizeChangePeriod, Color startColor, Color endColor,
                         Ticker colorChangePeriod, double radius) {
     if (radius < 0) {
       throw new IllegalArgumentException("Radius must be positive and not the same as" +
               "original value!");
     }
+    this.shape = shape;
+    this.type = type;
     this.radius = radius;
     this.startLocation = startLocation;
     this.endLocation = endLocation;
@@ -146,7 +155,6 @@ public class Transformation {
     this.type = type;
     this.endLocation = new Point2D(newX, newY);
     this.locationChangePeriod = new Ticker(timeStart, timeEnd);
-
   }
 
   /**

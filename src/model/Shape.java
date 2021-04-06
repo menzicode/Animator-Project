@@ -3,7 +3,7 @@ package model;
 /**
  * This interface contains all operations that all types of shapes should support.
  */
-public interface Shape extends Comparable<Shape> {
+public interface Shape {
 
   /**
    * Get x coordinate value of the shape.

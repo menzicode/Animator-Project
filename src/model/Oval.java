@@ -27,7 +27,7 @@ public class Oval extends AbstractShape {
     super(startXCoordinate, startYCoordinate, red, green, blue, timeAppears, timeDisappears, name);
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY) {
       throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as" +
-              "original values!");
+              "each other!");
     }
     this.radiusX = radiusX;
     this.radiusY = radiusY;
@@ -70,11 +70,15 @@ public class Oval extends AbstractShape {
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
    *                                  than zero
    */
-
   public void changeSize(double radiusX, double radiusY, int timeStart, int timeEnd) {
-    Transformation sizeTransformation = new Transformation(this.reference, null,
-            new Ticker(timeStart, timeEnd), null, null,
-            null, radiusX, radiusY);
+    if (radiusX < 0 || radiusY < 0 || radiusX == radiusY || this.radiusX == radiusX
+            && this.radiusY == radiusY) {
+      throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as"
+              + "original values!");
+    }
+    Transformation sizeTransformation = new Transformation(this,TransformationType.SIZE,
+            this.reference, null, new Ticker(timeStart, timeEnd), null,
+            null, null, radiusX, radiusY);
     this.transformationList.add(sizeTransformation);
   }
 
