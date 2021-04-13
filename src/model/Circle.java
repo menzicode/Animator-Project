@@ -67,10 +67,9 @@ public class Circle extends AbstractShape {
    *                                  than zero
    */
   public Transformation changeSize(double newRadius, int timeStart, int timeEnd) {
-    if (newRadius < 0 || this.radius == newRadius || timeStart < this.getAppearance() || timeEnd
-            > this.getDisappearance()) {
+    if (newRadius < 0 || this.radius == newRadius) {
       throw new IllegalArgumentException("Radius must be positive and different value than original"
-              + "radius size! Time span must be within shape's time span!");
+              + "radius size!");
     }
     Transformation sizeTransformation = new Transformation(this, TransformationType.SIZE,
             null, null, new Ticker(timeStart, timeEnd), null,

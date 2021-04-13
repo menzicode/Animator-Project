@@ -12,6 +12,7 @@ public class Oval extends AbstractShape {
   /**
    * Constructor for an Oval shape. An IllegalArgumentException is thrown for radiusX and radiusY
    * values less than zero or equal to each other.
+   *
    * @param radiusX          size of X radius.
    * @param radiusY          size of y radius.
    * @param startXCoordinate The x coordinate the object will originally be located.
@@ -22,8 +23,8 @@ public class Oval extends AbstractShape {
    * @param timeAppears      The time the object is set to appear on the display.
    * @param timeDisappears   The time the object is set to disappear on the display.
    * @param name             string shape of the shape.
-   * @throws IllegalArgumentException for radiusX and radiusY values less than zero or equal to
-   *                                  each other.
+   * @throws IllegalArgumentException for radiusX and radiusY values less than zero or equal to each
+   *                                  other.
    */
   public Oval(double radiusX, double radiusY, double startXCoordinate, double startYCoordinate,
               int red, int green, int blue, int timeAppears, int timeDisappears, String name) {
@@ -73,13 +74,13 @@ public class Oval extends AbstractShape {
    * @param timeEnd   End interval of the transformation.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
    *                                  than zero
+   * @returns transformation object.
    */
   public Transformation changeSize(double radiusX, double radiusY, int timeStart, int timeEnd) {
     if (radiusX < 0 || radiusY < 0 || radiusX == radiusY || this.radiusX == radiusX
-            && this.radiusY == radiusY || timeStart < this.getAppearance() || timeEnd
-            > this.getDisappearance()) {
+            && this.radiusY == radiusY) {
       throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as"
-              + "original values! Time span must be within shape's time span.");
+              + "original values!");
     }
     Transformation sizeTransformation = new Transformation(this, TransformationType.SIZE,
             this.reference, null, new Ticker(timeStart, timeEnd), null,
