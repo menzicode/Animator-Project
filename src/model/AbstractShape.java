@@ -21,6 +21,7 @@ public abstract class AbstractShape implements Shape {
 
     /**
      * Method for enum class used to represent enum as a string.
+     *
      * @return String representation of ShapeType.
      */
     @Override
@@ -62,11 +63,6 @@ public abstract class AbstractShape implements Shape {
     this.color = new Color(red, green, blue);
     this.time = new Ticker(timeAppears, timeDisappears);
     this.name = name;
-  }
-
-  @Override
-  public ArrayList<Transformation> getTransformationList() {
-    return transformationList;
   }
 
   @Override
@@ -142,8 +138,8 @@ public abstract class AbstractShape implements Shape {
       throw new IllegalArgumentException("Invalid location or time period for movement. "
               + "Time span must be within shape's time span!");
     }
-    Transformation moveTransformation = new Transformation( this, TransformationType.MOVE,
-            newX,  newY,  timeStart, timeEnd);
+    Transformation moveTransformation = new Transformation(this, TransformationType.MOVE,
+            newX, newY, timeStart, timeEnd);
 
     this.transformationList.add(moveTransformation);
     return moveTransformation;

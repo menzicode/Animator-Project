@@ -71,7 +71,6 @@ public class Oval extends AbstractShape {
    * @param radiusY   new radiusY value.
    * @param timeStart Start interval of the transformation.
    * @param timeEnd   End interval of the transformation.
-   * @returns transformation object.
    * @throws IllegalArgumentException if the radius is equal to the original value or if it's less
    *                                  than zero
    */
@@ -82,7 +81,7 @@ public class Oval extends AbstractShape {
       throw new IllegalArgumentException("RadiusX and radiusY must be positive and not the same as"
               + "original values! Time span must be within shape's time span.");
     }
-    Transformation sizeTransformation = new Transformation(this,TransformationType.SIZE,
+    Transformation sizeTransformation = new Transformation(this, TransformationType.SIZE,
             this.reference, null, new Ticker(timeStart, timeEnd), null,
             null, null, radiusX, radiusY);
 
@@ -95,7 +94,7 @@ public class Oval extends AbstractShape {
     return String.format("Name: %s\nType: oval\nCenter (%.1f,%.1f), X radius: %.1f, "
                     + "Y radius: %.1f" + "\n" + "Color: %s\nAppears at t=%s\nDisappears at t=%s",
             this.name, this.reference.getX(), this.reference.getY(), this.radiusX, this.radiusY,
-            this.color.toString(),this.time.getRangeStart(), this.time.getRangeEnd());
+            this.color.toString(), this.time.getRangeStart(), this.time.getRangeEnd());
   }
 
 }
