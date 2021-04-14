@@ -1,15 +1,14 @@
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-import model.Circle;
-import model.IModel;
-import model.IModelImpl;
-import model.Oval;
-import model.Rectangle;
-import model.Shape;
+import cs5004.animator.model.Circle;
+import cs5004.animator.model.IModel;
+import cs5004.animator.model.IModelImpl;
+import cs5004.animator.model.Oval;
+import cs5004.animator.model.Rectangle;
+import cs5004.animator.model.Shape;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

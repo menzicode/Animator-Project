@@ -1,8 +1,6 @@
 package cs5004.animator.view;
 
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.util.List;
 
 
 /**
@@ -22,20 +20,36 @@ public interface IView {
    * Provide the view with an action listener for
    * the button that should cause the program to
    * process a command. This is so that when the button
-   * is pressed, control goes to the action listener
+   * is pressed, control goes to the action listener.
    * @param actionEvent
    */
   void setCommandButtonListener(ActionListener actionEvent);
 
   /**
    * Transmit an error message to the view, in case
-   * the command could not be processed correctly
+   * the command could not be processed correctly.
    * @param error
    */
   void showErrorMessage(String error);
 
   /**
-   * Signal the view to draw itself
+   * Signal the view to draw itself.
    */
   void refresh();
+
+  /**
+   * Sets the shapes on the screen.
+   */
+  void setShapes();
+
+  /**
+   * Gets the type of the shape so the view can draw it.
+   */
+  void getType();
+
+  /**
+   * Sets the text of the animation.
+   */
+  void setText();
+
 }

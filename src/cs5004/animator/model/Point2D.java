@@ -1,4 +1,4 @@
-package model;
+package cs5004.animator.model;
 
 /**
  * This class represents a 2D point. This point is denoted in Cartesian coordinates as (x,y).

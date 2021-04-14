@@ -13,8 +13,8 @@ The program tracks these changes and can provide a readable transformation histo
 
 
 Interface IModel
-- Represents the animation model object
-- Declares methods necessary to the animation model implementation
+- Represents the animation cs5004.animator.model object
+- Declares methods necessary to the animation cs5004.animator.model implementation
 
 
 Class IModelImpl

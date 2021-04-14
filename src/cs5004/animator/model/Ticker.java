@@ -1,4 +1,4 @@
-package model;
+package cs5004.animator.model;
 
 /**
  * Class used to represent time intervals.
@@ -8,7 +8,7 @@ public class Ticker {
   private int rangeEnd;
 
   /**
-   * Constructs a model.Ticker object that represents a time interval. If either time is less
+   * Constructs a cs5004.animator.model.Ticker object that represents a time interval. If either time is less
    * than zero or they equal each other than an IllegalArgumentException is thrown.
    *
    * @param rangeStart    start of time range as an int.

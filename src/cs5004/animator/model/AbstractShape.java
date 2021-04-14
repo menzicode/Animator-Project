@@ -1,9 +1,9 @@
-package model;
+package cs5004.animator.model;
 
 import java.util.ArrayList;
 
 /**
- * Abstract Class for model.Shape Class.
+ * Abstract Class for cs5004.animator.model.Shape Class.
  */
 public abstract class AbstractShape implements Shape {
   protected Point2D reference;

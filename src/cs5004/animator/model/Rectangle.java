@@ -1,10 +1,10 @@
-package model;
+package cs5004.animator.model;
 
 
 import java.util.ArrayList;
 
 /**
- * This class represents a rectangle.  It defines all the operations mandated by the model.Shape
+ * This class represents a rectangle.  It defines all the operations mandated by the cs5004.animator.model.Shape
  * interface
  */
 public class Rectangle extends AbstractShape {

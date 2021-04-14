@@ -1,4 +1,4 @@
-package model;
+package cs5004.animator.model;
 
 /**
  * Class used to represent transformation of a specific shape.

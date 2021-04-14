@@ -2,10 +2,28 @@ package cs5004.animator.view;
 
 import java.awt.event.ActionListener;
 
+import cs5004.animator.util.AnimationBuilder;
+
+/**
+ * This class represents a text view of the animation. It implements the methods from IView.
+ */
 public class TextView implements IView{
+  private AnimationBuilder input;
+
+  /**
+   * Constructs a new TextView object.
+   */
+  public TextView() {
+
+  }
+
+  @Override
+  public void setText() {
+    String text
+  }
+
   @Override
   public void makeVisible() {
-
   }
 
   @Override
@@ -22,4 +40,16 @@ public class TextView implements IView{
   public void refresh() {
 
   }
+
+  @Override
+  public void setShapes() {
+
+  }
+
+  @Override
+  public void getType() {
+
+  }
+
 }
+

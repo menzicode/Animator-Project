@@ -1,16 +1,16 @@
-package model;
+package cs5004.animator.model;
 
 import java.util.ArrayList;
 
 /**
- * This class represents a circle.  It offers all the operations mandated by the model.Shape
+ * This class represents a circle.  It offers all the operations mandated by the cs5004.animator.model.Shape
  * interface.
  */
 public class Circle extends AbstractShape {
   protected final double radius;
 
   /**
-   * Constructs a model. Circle with a given center, radius, color, time of appearance and
+   * Constructs a cs5004.animator.model. Circle with a given center, radius, color, time of appearance and
    * disappearance, shape, and shapeType. An IllegalArgumentException is thrown for radius size less
    * than zero.
    *

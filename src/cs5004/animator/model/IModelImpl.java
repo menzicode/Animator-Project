@@ -1,16 +1,15 @@
-package model;
+package cs5004.animator.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.NoSuchElementException;
-import model.AbstractShape.ShapeType;
 
+import cs5004.animator.model.AbstractShape.ShapeType;
 import cs5004.animator.util.AnimationBuilder;
-import cs5004.animator.util.AnimationReader;
 
 /**
- * This class represents the model for an animation with shapes. The class implements all methods
- * from the model.IModel interface.
+ * This class represents the cs5004.animator.model for an animation with shapes. The class implements all methods
+ * from the cs5004.animator.model.IModel interface.
  */
 public final class IModelImpl implements IModel {
   protected ArrayList<Shape> shapes;
@@ -18,7 +17,7 @@ public final class IModelImpl implements IModel {
   protected int shapeCount;
 
   /**
-   * Constructs an animation model that starts with an empty animation screen.
+   * Constructs an animation cs5004.animator.model that starts with an empty animation screen.
    */
   public IModelImpl() {
     this.shapes = new ArrayList<>();

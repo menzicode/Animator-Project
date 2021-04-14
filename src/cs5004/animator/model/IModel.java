@@ -1,10 +1,10 @@
-package model;
+package cs5004.animator.model;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 /**
- * This represents a model for the animation and its required methods.
+ * This represents a cs5004.animator.model for the animation and its required methods.
  */
 public interface IModel {
 
@@ -30,7 +30,7 @@ public interface IModel {
    * Returns specific shape from the animation. An IllegalArgumentException is thrown if the shape
    * is not in the animation.
    *
-   * @param object the model.Shape to be returned from the animation
+   * @param object the cs5004.animator.model.Shape to be returned from the animation
    * @throws NoSuchElementException the shape does not exist in the animation
    */
   Shape getSpecificShape(Shape object);
