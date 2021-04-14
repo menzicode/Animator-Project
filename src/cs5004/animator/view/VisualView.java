@@ -2,7 +2,16 @@ package cs5004.animator.view;
 
 import java.awt.event.ActionListener;
 
-public class VisualView implements IView {
+import javax.swing.*;
+
+public class VisualView extends JFrame implements IView {
+  private JButton commandButton, quitButton;
+  private JPanel buttonPanel;
+  private JTextField input;
+  private JLabel display;
+
+
+
   @Override
   public void makeVisible() {
 
@@ -20,6 +29,16 @@ public class VisualView implements IView {
 
   @Override
   public void refresh() {
+
+  }
+
+  @Override
+  public void setShapes() {
+
+  }
+
+  @Override
+  public void setText() {
 
   }
 }
