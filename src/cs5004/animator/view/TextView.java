@@ -43,12 +43,12 @@ public class TextView implements IView{
 
   @Override
   public void setShapes() {
-
+    return 0;
   }
 
   @Override
   public void getType() {
-
+    // test
   }
 
 }
