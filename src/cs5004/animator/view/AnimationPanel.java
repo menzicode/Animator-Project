@@ -1,10 +1,33 @@
 package cs5004.animator.view;
 
+import java.awt.*;
+
 import javax.swing.*;
 
-public class AnimationPanel extends JPanel {
+/**
+ * This Animation Panel represents the area where the animations of shapes will take place.
+ */
+class AnimationPanel extends JPanel {
+
+  /**
+   * Constructs an Animation Panel object.
+   */
   public AnimationPanel() {
     super();
-    this.add(this, BoxLayout.PAGE_AXIS);
+    ;
+    this.setBackground(Color.WHITE);
+
+  }
+  /**
+   * Overrides the paintComponent method in the JPanel.
+   *
+   * @param g;
+   */
+  @Override
+  protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D graphics = (Graphics2D) g;
+    }
+
   }
 }
